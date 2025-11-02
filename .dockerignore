@@ -5,6 +5,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Don't ignore lock files - we need them for Docker
+# pnpm-lock.yaml
+# package-lock.json
+# yarn.lock
+
 # Testing
 coverage
 *.lcov
