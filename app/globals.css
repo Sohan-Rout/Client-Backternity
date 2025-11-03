@@ -81,3 +81,40 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* globals.css */
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+/* === 🌑 Backternity Custom Scrollbar === */
+::-webkit-scrollbar {
+  width: 6px;              /* thin scrollbar */
+  height: 6px;             /* thin for horizontal scroll too */
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--card));   /* subtle dark track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);  /* emerald accent with transparency */
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));  /* brighter emerald on hover */
+}
+
+/* Firefox (uses different syntax) */
+* {
+  scrollbar-width: thin;                /* 'auto' or 'thin' */
+  scrollbar-color: hsl(var(--primary) / 0.6) hsl(var(--card)); /* thumb / track */
+}

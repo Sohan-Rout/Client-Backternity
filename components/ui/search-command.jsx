@@ -6,7 +6,6 @@ import {
   CommandInput,
   CommandList,
   CommandItem,
-  CommandGroup,
   CommandEmpty,
 } from "@/components/ui/command";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -14,22 +13,14 @@ import { Search } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-
-// ✅ Import your central registry
 import ComponentRegistry from "@/lib/registry";
 
-/**
- * ✨ Backternity Command Palette (Dynamic)
- * - Automatically loads all components from registry.js
- * - Supports keyboard shortcut (Cmd/Ctrl + K)
- * - ESC to close
- * - Grouped by component type
- */
 export default function SearchCommand() {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const router = useRouter();
 
-  // 🔹 Toggle via keyboard shortcut (Cmd/Ctrl + K)
+  // Keyboard shortcut: Cmd/Ctrl + K
   useEffect(() => {
     const down = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -43,56 +34,39 @@ export default function SearchCommand() {
     return () => window.removeEventListener("keydown", down);
   }, []);
 
-  // 🔹 Build list of commands from registry
-  const commands = useMemo(() => {
+  // Flatten registry
+  const components = useMemo(() => {
     return Object.entries(ComponentRegistry).map(([id, comp]) => ({
       id,
-      label: comp.name,
-      description: comp.description,
-      type: comp.type || "other",
-      version: comp.version,
-      tags: comp.tags || [],
+      name: comp.name,
+      description: comp.description || "",
     }));
   }, []);
 
-  // 🔹 Group by component type (auth, database, storage, etc.)
-  const groupedCommands = useMemo(() => {
-    const groups = {};
-    for (const cmd of commands) {
-      const group = cmd.type.toLowerCase();
-      if (!groups[group]) groups[group] = [];
-      groups[group].push(cmd);
-    }
-    return groups;
-  }, [commands]);
+  // Custom filter logic (controlled)
+  const filtered = useMemo(() => {
+    const q = query.toLowerCase().trim();
+    if (!q) return components;
+    return components.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.description.toLowerCase().includes(q)
+    );
+  }, [query, components]);
 
-  // 🔹 Navigate to component details page
-  const handleSelect = (value) => {
+  // Navigation
+  const handleSelect = (id) => {
     setOpen(false);
-    router.push(`/browse/${value}`);
-  };
-
-  // 🔹 Mac vs Windows shortcut label
-  const keyLabel = "⌘"
-
-  // 🔹 Optional: Human-readable group labels
-  const LABEL_MAP = {
-    auth: "Authentication",
-    database: "Database",
-    middleware: "Middleware / Utilities",
-    utility: "Middleware / Utilities",
-    storage: "Storage",
-    caching: "Caching",
-    other: "Miscellaneous",
+    router.push(`/browse/${id}`);
   };
 
   return (
     <>
-      {/* 🔸 Trigger Button */}
+      {/* Trigger Button */}
       <button
         onClick={() => setOpen(true)}
         aria-label="Open search command palette"
-        className="flex items-center justify-between w-[300px] px-4 py-2 
+        className="flex items-center justify-between w-[280px] px-4 py-2 
           bg-card/70 text-foreground rounded-xl border border-border 
           shadow-sm hover:border-primary/50 hover:bg-card/80 
           transition-all duration-200"
@@ -102,71 +76,65 @@ export default function SearchCommand() {
           <span className="text-sm text-foreground">Search Components</span>
         </div>
         <kbd className="flex items-center gap-1 text-xs text-primary bg-secondary px-1.5 py-[2px] pt-1 rounded font-mono tracking-wide">
-          {keyLabel} + K
+          ⌘ + K
         </kbd>
       </button>
 
-      {/* 🔸 Command Palette */}
+      {/* Command Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           className={cn(
-            "p-0 max-w-xl rounded-lg border border-border/50",
-            "shadow-2xl bg-card backdrop-blur-sm transition-all duration-200"
+            "p-0 max-w-lg rounded-lg border border-border/50 shadow-2xl bg-card backdrop-blur-sm"
           )}
         >
           <VisuallyHidden>
             <DialogTitle>Search Components</DialogTitle>
           </VisuallyHidden>
 
-          <Command className="rounded-lg">
-            {/* Search Input */}
+          {/* ✅ Disable internal filtering */}
+          <Command shouldFilter={false}>
             <CommandInput
               placeholder="Search components..."
+              value={query}
+              onValueChange={setQuery}
               className="bg-transparent text-foreground border-none px-6 py-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-0"
               autoFocus
             />
 
-            {/* Results */}
-            {/* Results */}
-<CommandList
+            <CommandList
   className={cn(
-    "max-h-[420px] overflow-y-auto px-2 pb-2",
-    // Hide scrollbar (cross-browser)
-    "[&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0 scrollbar-none"
+    "max-h-[420px] overflow-y-auto px-3 py-4 pb-2",
+    // ✅ Completely hide scrollbar (cross-browser)
+    "[&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0",
+    "scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none]"
   )}
 >
   <CommandEmpty className="px-6 py-8 text-sm text-muted-foreground text-center">
     No components found.
   </CommandEmpty>
 
-  {Object.entries(groupedCommands).map(([groupName, items]) => (
-    <CommandGroup
-      key={groupName}
-      heading={LABEL_MAP[groupName] || groupName}
-      className="text-xs font-medium text-muted-foreground/80 mb-2 px-4 py-2"
+  {filtered.map((comp) => (
+    <CommandItem
+      key={comp.id}
+      onSelect={() => handleSelect(comp.id)}
+      className={cn(
+        "cursor-pointer px-3 py-3 rounded-md text-foreground flex justify-between transition-all duration-150",
+        "hover:bg-secondary/60 focus:bg-secondary/60 data-[selected=true]:bg-secondary/60",
+        "border border-transparent hover:border-border/30"
+      )}
     >
-      {items.map((cmd) => (
-        <CommandItem
-          key={cmd.id}
-          onSelect={() => handleSelect(cmd.id)}
-          className={cn(
-            "cursor-pointer px-2 py-3 mx-1 rounded-md text-foreground flex justify-between transition-all duration-150",
-            "hover:bg-secondary/60 focus:bg-secondary/60 data-[selected=true]:bg-secondary/60",
-            "border border-transparent hover:border-border/30"
-          )}
-        >
-          <span className="flex flex-col gap-1 flex-1 min-w-0">
-            <span className="font-medium text-white text-sm">{cmd.label}</span>
-            <span className="text-xs text-muted-foreground line-clamp-1 leading-relaxed">
-              {cmd.description}
-            </span>
-          </span>
-          <span className="text-xs text-primary/60 font-mono ml-4 shrink-0 self-center">
-            /browse/{cmd.id}
-          </span>
-        </CommandItem>
-      ))}
-    </CommandGroup>
+      <div className="flex flex-col gap-1 flex-1 min-w-0">
+        <span className="font-medium text-white text-sm">
+          {comp.name}
+        </span>
+        <span className="text-xs text-muted-foreground line-clamp-1">
+          {comp.description}
+        </span>
+      </div>
+      <span className="text-xs text-primary/60 font-mono ml-4 shrink-0 self-center">
+        /browse/{comp.id}
+      </span>
+    </CommandItem>
   ))}
 </CommandList>
 
