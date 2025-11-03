@@ -4,7 +4,11 @@ import { CodeBlock } from "@/components/ui/code-block";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function ExpandableCodeBlock({ code, filename, language = "javascript" }) {
+export function ExpandableCodeBlock({
+  code,
+  filename,
+  language = "javascript",
+}) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -32,7 +36,10 @@ export function ExpandableCodeBlock({ code, filename, language = "javascript" })
       </div>
 
       {/* Expand/Collapse button */}
-      <div className="absolute bottom-0 left-10 right-0 flex justify-center bg-gradient-to-t from-emerald-900/90 via-emerald-700/40 to-transparent pt-2 pb-3">
+      <div
+        className="absolute bottom-0 left-0 right-0 flex justify-center bg-gradient-to-t from-black/90 via-black/40 to-transparent pt-1 pb-3
+             backdrop-blur-sm border-t border-white/[0.03]"
+      >
         <Button
           variant="ghost"
           size="sm"

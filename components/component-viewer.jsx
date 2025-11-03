@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import CodeSnippet from "./ui/code-snippet";
 import { CodeBlock } from "@/components/ui/code-block";
 import { ExpandableCodeBlock } from "./ui/expandableCodeBlock";
+import ApiTestButton from "./ui/API-test";
 
 export default function ComponentViewer({ component }) {
   const [copied, setCopied] = useState(null);
@@ -159,7 +160,7 @@ export default function ComponentViewer({ component }) {
                   <h3 className="text-sm font-semibold text-muted-foreground uppercase mb-3">
                     {key === "creates"
                       ? "Files & Folders Created"
-                      : "Files Modified"}
+                      : "Files to be modified"}
                   </h3>
 
                   <div className="overflow-x-auto rounded-lg border border-white/10 bg-black/40">
@@ -224,34 +225,33 @@ export default function ComponentViewer({ component }) {
         )}
 
       {/* FRONTEND USAGE */}
-{component.documentation?.frontendUsage && (
-  <section id="frontend-usage">
-    <h2 className="text-2xl font-semibold mb-4 text-foreground tracking-tight">
-      Frontend Integration
-    </h2>
-    <p className="text-[15px] leading-relaxed text-foreground/90 mb-4">
-      {component.documentation.frontendUsage.overview}
-    </p>
+      {component.documentation?.frontendUsage && (
+        <section id="frontend-usage">
+          <h2 className="text-2xl font-semibold mb-4 text-foreground tracking-tight">
+            Frontend Integration
+          </h2>
+          <p className="text-[15px] leading-relaxed text-foreground/90 mb-4">
+            {component.documentation.frontendUsage.overview}
+          </p>
 
-    <ul className="list-disc list-inside text-foreground/90 text-sm mb-4">
-      {component.documentation.frontendUsage.endpoints?.map((ep, i) => (
-        <li key={i}>
-          <span className="text-emerald-400 font-medium">{ep.method}</span>{" "}
-          <code className="text-cyan-400">{ep.route}</code> — {ep.description}
-        </li>
-      ))}
-    </ul>
+          <div className="space-y-4">
+  {component.documentation.frontendUsage.endpoints?.map((ep, i) => (
+    <div key={i} className="w-full">
+      <ApiTestButton endpoint={ep} />
+    </div>
+  ))}
+</div>
 
-    {component.documentation.frontendUsage.example && (
-      <ExpandableCodeBlock
-        code={component.documentation.frontendUsage.example}
-        filename="frontend-example.js"
-        language="javascript"
-      />
-    )}
-  </section>
-)}
 
+          {component.documentation.frontendUsage.example && (
+            <ExpandableCodeBlock
+              code={component.documentation.frontendUsage.example}
+              filename="frontend-example.js"
+              language="javascript"
+            />
+          )}
+        </section>
+      )}
 
       {/* USAGE */}
       {component.documentation?.usage && (

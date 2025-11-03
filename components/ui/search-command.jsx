@@ -73,10 +73,7 @@ export default function SearchCommand() {
   };
 
   // 🔹 Mac vs Windows shortcut label
-  const keyLabel =
-    typeof window !== "undefined" && window.navigator.platform.includes("Mac")
-      ? "⌘"
-      : "Ctrl";
+  const keyLabel = "⌘"
 
   // 🔹 Optional: Human-readable group labels
   const LABEL_MAP = {
@@ -105,7 +102,7 @@ export default function SearchCommand() {
           <span className="text-sm text-foreground">Search Components</span>
         </div>
         <kbd className="flex items-center gap-1 text-xs text-primary bg-secondary px-1.5 py-[2px] pt-1 rounded font-mono tracking-wide">
-          {keyLabel} K
+          {keyLabel} + K
         </kbd>
       </button>
 

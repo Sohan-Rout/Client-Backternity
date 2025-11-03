@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import SearchShortcut from "@/components/ui/search-command";
 import { useEffect, useState } from "react";
 
+
 export default function BrowseLayout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const components = Object.entries(ComponentRegistry);
