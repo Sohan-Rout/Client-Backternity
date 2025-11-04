@@ -48,7 +48,6 @@ function ComponentSkeleton() {
 /** 🔸 BrowseIndexPage with Skeleton + Delayed Redirect */
 export default function BrowseIndexPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const firstComponent = Object.keys(ComponentRegistry)[0];

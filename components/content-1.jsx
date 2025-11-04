@@ -8,7 +8,7 @@ export default function Content() {
     {
       icon: Code2,
       title: "Choose Components",
-      description: "Pick from our battle-tested backend modules",
+      description: "Pick from our various backend modules",
       step: "01",
     },
     {
@@ -20,18 +20,18 @@ export default function Content() {
     {
       icon: Shield,
       title: "Deploy Securely",
-      description: "Production-ready with built-in security",
+      description: "Production & Expandable - ready modules",
       step: "03",
     },
   ];
 
   const capabilities = [
-    { icon: Database, text: "Database Integration", desc: "MongoDB, PostgreSQL, Redis" },
+    { icon: Database, text: "Database", desc: "MongoDB, PostgreSQL, Redis" },
     { icon: Lock, text: "Authentication", desc: "JWT, OAuth, MFA, Session" },
-    { icon: Activity, text: "Real-time Features", desc: "WebSockets, SSE, Live updates" },
-    { icon: Layers, text: "Middleware Stack", desc: "Logging, CORS, Rate limiting" },
-    { icon: Globe, text: "API Management", desc: "REST, GraphQL, Documentation" },
-    { icon: Shield, text: "Security First", desc: "Encryption, Validation, HTTPS" },
+    { icon: Activity, text: "Real-time", desc: "WebSockets, SSE, Live updates" },
+    { icon: Layers, text: "Middleware", desc: "Logging, CORS, Rate limiting" },
+    { icon: Globe, text: "Utility", desc: "Winston, Bull Queue, Worker Threads" },
+    { icon: Shield, text: "Upload", desc: "AWS, Minio, Drag and Drop, Multer" },
   ];
 
   return (
@@ -70,7 +70,7 @@ export default function Content() {
             className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/5 border border-primary/10 rounded-full mb-5 backdrop-blur-sm"
           >
             <Layers className="w-4 h-4 text-primary/80" />
-            <span className="text-sm font-medium text-primary/80">Backend Architecture Reimagined</span>
+            <span className="text-sm font-medium text-primary/80">Backend Development Reimagined</span>
           </motion.div>
 
           <motion.h2
@@ -88,7 +88,7 @@ export default function Content() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
-            Transform your development workflow with modular, production-ready backend components.  
+            Transform your development workflow with modular, developer-ready backend components.
             Focus on innovation — not boilerplate.
           </motion.p>
         </div>
@@ -121,8 +121,8 @@ export default function Content() {
                 From Concept to Production <span className="text-primary font-semibold">in Minutes</span>
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Backternity delivers enterprise-grade backend building blocks that integrate seamlessly into your stack.  
-                Skip setup — ship faster.
+                Backternity delivers enterprise-grade backend building blocks that integrate seamlessly into your server.  
+                <b> Skip setup — ship faster.</b>
               </p>
             </div>
 
@@ -159,7 +159,7 @@ export default function Content() {
           <div className="text-center mb-12">
             <h3 className="text-2xl font-semibold text-foreground mb-3">Everything You Need, Simplified</h3>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Thoughtfully designed modules covering every layer of modern backend architecture.
+              Thoughtfully designed modules covering every layer and application building of modern backend development.
             </p>
           </div>
 

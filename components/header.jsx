@@ -28,6 +28,25 @@ export const HeroHeader = () => {
         return () => unsubscribe();
     }, [scrollYProgress])
 
+    // Smooth scroll function
+    const smoothScrollTo = (elementId) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            const headerHeight = 80; // Account for fixed header
+            const elementPosition = element.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const handleNavClick = (e, targetId) => {
+        e.preventDefault();
+        smoothScrollTo(targetId);
+    };
+
     return (
        <header>
           <nav
@@ -51,9 +70,38 @@ export const HeroHeader = () => {
                   </div>
 
                   <ul className="hidden lg:flex gap-8 text-sm font-medium">
-                    <li><Link href="#features" className="text-emerald-400 hover:text-emerald-300">Features</Link></li>
-                    <li><Link href="#solutions" className="text-emerald-400 hover:text-emerald-300">Solutions</Link></li>
-                    <li><Link href="#about" className="text-emerald-400 hover:text-emerald-300">About</Link></li>
+                    <li>
+                      <button 
+                        onClick={(e) => handleNavClick(e, 'features')}
+                        className="text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                      >
+                        Features
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={(e) => handleNavClick(e, 'solutions')}
+                        className="text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                      >
+                        Solutions
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={(e) => handleNavClick(e, 'testimonials')}
+                        className="text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                      >
+                        Testimonials
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={(e) => handleNavClick(e, 'contact')}
+                        className="text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                      >
+                        Contact
+                      </button>
+                    </li>
                   </ul>
                 </div>
 

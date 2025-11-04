@@ -83,35 +83,34 @@ export const CodeBlock = ({
       {/* Code Area */}
       <div className="overflow-hidden rounded-lg border border-white/10 bg-black/40 p-4">
         <SyntaxHighlighter
-  language={activeLanguage}
-  style={atomDark}
-  customStyle={{
-    margin: 0,
-    padding: 0,
-    background: "transparent",
-    fontSize: "0.875rem", // text-sm
-    whiteSpace: "pre-wrap",      // ✅ Wrap long lines
-    wordBreak: "break-word",     // ✅ Break long words if needed
-    overflowX: "visible",        // ✅ Remove horizontal scrollbar
-  }}
-  wrapLines={true}
-  showLineNumbers={true}
-  lineProps={(lineNumber) => ({
-    style: {
-      backgroundColor: activeHighlightLines.includes(lineNumber)
-        ? "rgba(255,255,255,0.08)"
-        : "transparent",
-      display: "block",
-      width: "100%",
-      whiteSpace: "pre-wrap", // ✅ Ensures wrapping even inside lines
-      wordBreak: "break-word",
-    },
-  })}
-  PreTag="div"
->
-  {String(activeCode)}
-</SyntaxHighlighter>
-
+          language={activeLanguage}
+          style={atomDark}
+          customStyle={{
+            margin: 0,
+            padding: 0,
+            background: "transparent",
+            fontSize: "0.875rem", // text-sm
+            whiteSpace: "pre-wrap", // ✅ Wrap long lines
+            wordBreak: "break-word", // ✅ Break long words if needed
+            overflowX: "visible", // ✅ Remove horizontal scrollbar
+          }}
+          wrapLines={true}
+          showLineNumbers={true}
+          lineProps={(lineNumber) => ({
+            style: {
+              backgroundColor: activeHighlightLines.includes(lineNumber)
+                ? "rgba(255,255,255,0.08)"
+                : "transparent",
+              display: "block",
+              width: "100%",
+              whiteSpace: "pre-wrap", // ✅ Ensures wrapping even inside lines
+              wordBreak: "break-word",
+            },
+          })}
+          PreTag="div"
+        >
+          {String(activeCode)}
+        </SyntaxHighlighter>
 
         {/* Floating copy button for tabs */}
         {tabsExist && (

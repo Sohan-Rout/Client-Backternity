@@ -11,7 +11,7 @@ import {
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { cn } from "@/lib/utils";
 import ComponentRegistry from "@/lib/registry";
 
@@ -102,42 +102,41 @@ export default function SearchCommand() {
             />
 
             <CommandList
-  className={cn(
-    "max-h-[420px] overflow-y-auto px-3 py-4 pb-2",
-    // ✅ Completely hide scrollbar (cross-browser)
-    "[&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0",
-    "scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none]"
-  )}
->
-  <CommandEmpty className="px-6 py-8 text-sm text-muted-foreground text-center">
-    No components found.
-  </CommandEmpty>
+              className={cn(
+                "max-h-[420px] overflow-y-auto px-3 py-4 pb-2",
+                // ✅ Completely hide scrollbar (cross-browser)
+                "[&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0",
+                "scrollbar-none [-ms-overflow-style:none] [scrollbar-width:none]"
+              )}
+            >
+              <CommandEmpty className="px-6 py-8 text-sm text-muted-foreground text-center">
+                No components found.
+              </CommandEmpty>
 
-  {filtered.map((comp) => (
-    <CommandItem
-      key={comp.id}
-      onSelect={() => handleSelect(comp.id)}
-      className={cn(
-        "cursor-pointer px-3 py-3 rounded-md text-foreground flex justify-between transition-all duration-150",
-        "hover:bg-secondary/60 focus:bg-secondary/60 data-[selected=true]:bg-secondary/60",
-        "border border-transparent hover:border-border/30"
-      )}
-    >
-      <div className="flex flex-col gap-1 flex-1 min-w-0">
-        <span className="font-medium text-white text-sm">
-          {comp.name}
-        </span>
-        <span className="text-xs text-muted-foreground line-clamp-1">
-          {comp.description}
-        </span>
-      </div>
-      <span className="text-xs text-primary/60 font-mono ml-4 shrink-0 self-center">
-        /browse/{comp.id}
-      </span>
-    </CommandItem>
-  ))}
-</CommandList>
-
+              {filtered.map((comp) => (
+                <CommandItem
+                  key={comp.id}
+                  onSelect={() => handleSelect(comp.id)}
+                  className={cn(
+                    "cursor-pointer px-3 py-3 rounded-md text-foreground flex justify-between transition-all duration-150",
+                    "hover:bg-secondary/60 focus:bg-secondary/60 data-[selected=true]:bg-secondary/60",
+                    "border border-transparent hover:border-border/30"
+                  )}
+                >
+                  <div className="flex flex-col gap-1 flex-1 min-w-0">
+                    <span className="font-medium text-white text-sm">
+                      {comp.name}
+                    </span>
+                    <span className="text-xs text-muted-foreground line-clamp-1">
+                      {comp.description}
+                    </span>
+                  </div>
+                  <span className="text-xs text-primary/60 font-mono ml-4 shrink-0 self-center">
+                    /browse/{comp.id}
+                  </span>
+                </CommandItem>
+              ))}
+            </CommandList>
           </Command>
         </DialogContent>
       </Dialog>

@@ -1,262 +1,270 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { TextEffect } from "@/components/ui/text-effect";
-import { AnimatedGroup } from "@/components/ui/animated-group";
+import { motion, AnimatePresence } from "framer-motion";
 import { HeroHeader } from "./header";
-import { IoCopyOutline } from "react-icons/io5";
-import { IoCopy } from "react-icons/io5";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
-import { gsap } from "gsap";
+import { CodeBlock } from "./ui/code-block";
 
-const transitionVariants = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(12px)",
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.3,
-        duration: 1.5,
-      },
-    },
-  },
+//
+// === 1. Dynamic Background Grid ===
+//
+const DynamicGridBackground = () => {
+  const colorOptions = [
+    "bg-emerald-500/40",
+    "bg-emerald-400/40",
+    "bg-neutral-800/60",
+    "bg-neutral-900/60",
+    "bg-neutral-950/60",
+  ];
+
+  const [gridColors, setGridColors] = useState([]);
+  const [isMounted, setIsMounted] = useState(false);
+  const [gridSize, setGridSize] = useState({ cols: 0, rows: 0, total: 0 });
+  const gridRef = useRef(null);
+
+  // Auto-fit grid to viewport
+  useEffect(() => {
+    const calculateGrid = () => {
+      const boxSize = 80;
+      const gap = 12;
+      const totalBoxSize = boxSize + gap;
+      const cols = Math.ceil(window.innerWidth / totalBoxSize) + 1;
+      const rows = Math.ceil(window.innerHeight / totalBoxSize) + 1;
+      const total = cols * rows;
+
+      setGridSize({ cols, rows, total });
+      setGridColors(
+        Array.from({ length: total }).map(
+          () => colorOptions[Math.floor(Math.random() * colorOptions.length)]
+        )
+      );
+    };
+
+    calculateGrid();
+    setIsMounted(true);
+    window.addEventListener("resize", calculateGrid);
+    return () => window.removeEventListener("resize", calculateGrid);
+  }, []);
+
+  // Subtle shimmer effect
+  useEffect(() => {
+    if (!isMounted || gridSize.total === 0) return;
+    const interval = setInterval(() => {
+      setGridColors((prev) =>
+        prev.map(
+          () => colorOptions[Math.floor(Math.random() * colorOptions.length)]
+        )
+      );
+    }, 800);
+    return () => clearInterval(interval);
+  }, [isMounted, gridSize.total]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        ref={gridRef}
+        className="grid gap-3 w-full h-full opacity-80 blur-[0.4px]"
+        style={{
+          gridTemplateColumns: `repeat(${gridSize.cols}, 80px)`,
+        }}
+      >
+        {isMounted
+          ? gridColors.map((color, i) => (
+              <motion.div
+                key={i}
+                className={`w-20 h-20 rounded-lg ${color}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.15, delay: i * 0.002 }}
+              />
+            ))
+          : Array.from({ length: 50 }).map((_, i) => (
+              <div key={i} className="w-20 h-20 rounded-lg bg-emerald-500/10" />
+            ))}
+      </div>
+
+      {/* Dark overlay for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/60 via-neutral-950/80 to-neutral-950/95 backdrop-blur-[2px]" />
+    </div>
+  );
 };
 
-// Separate component for the copy functionality to avoid hooks conditional call
-function CommandCopy() {
+//
+// === 2. Command Copy Box ===
+//
+const CommandCopy = () => {
   const [copied, setCopied] = useState(false);
   const command = "npx backternity@latest init";
-  
+
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(command);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      setTimeout(() => setCopied(false), 2000);
     } catch (e) {
       console.error("Failed to copy:", e);
     }
   };
 
   return (
-    <AnimatedGroup
-      variants={{
-        container: {
-          visible: {
-            transition: {
-              staggerChildren: 0.05,
-              delayChildren: 0.75,
-            },
-          },
-        },
-        ...transitionVariants,
-      }}
-      className="mt-6 flex-row items-center gap-2"
+    <motion.div
+      initial={{ opacity: 0, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1, duration: 0.2, ease: "easeOut" }}
+      className="mt-12 flex flex-col items-center gap-6 w-full max-w-2xl mx-auto"
     >
-      <div
-        className="mb-6 bg-neutral-900 text-neutral-200 rounded-xl p-4 w-full max-w-md shadow-lg"
+      {/* === Command Box === */}
+      <motion.div
+        whileHover={{ scale: 1.01 }}
+        transition={{ type: "spring", stiffness: 400, damping: 16 }}
+        onClick={handleCopy}
+        className="group relative w-full cursor-pointer overflow-hidden 
+          rounded-xl border border-white/10 bg-neutral-950/80 backdrop-blur-xl
+          shadow-[0_0_25px_rgba(0,255,180,0.08)] hover:shadow-[0_0_35px_rgba(0,255,180,0.12)]
+          transition-all duration-100"
       >
-        <div className="flex items-center justify-between mb-3 border-b border-neutral-700 pb-2">
-          <h2 className="font-semibold text-sm text-neutral-100">
-            ~ package
-          </h2>
+        {/* Hover Glow */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
-          <button
-            type="button"
-            className="text-xs flex items-center gap-1 px-3 py-1 rounded-lg transition"
-            onClick={handleCopy}
-          >
-            <AnimatePresence mode="wait">
-              {copied ? (
-                <motion.span
-                  key="copied"
-                  initial={{ y: -5, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 6, opacity: 0 }}
-                  transition={{ duration: 0.1 }}
-                  className="text-emerald-500 flex items-center gap-1"
-                >
-                  Copied!
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="copy"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.1 }}
-                  className="flex items-center gap-1 py-2 text-neutral-400"
-                >
-                  {""}
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-        </div>
-
-        <code
-          onClick={handleCopy}
-          className="flex cursor-pointer justify-between font-mono text-sm bg-neutral-950 rounded-lg p-3 text-emerald-500 whitespace-pre-wrap"
-        >
-          {command}
-          <span>{copied ? <IoCopy /> : <IoCopyOutline />}</span>
-        </code>
-      </div>
-      <div className="flex items-center gap-2 mt-6">
-        <div className="border rounded-full">
-          <Button asChild size="lg" className="px-6 text-base rounded-full">
-            <Link
-              href="browse"
-              className="text-neutral-200 hover:text-neutral-500 hover:bg-neutral-200 duration-300"
-            >
-              <span className="text-nowrap">
-                Browser Components
-              </span>
-            </Link>
-          </Button>
-        </div>
-        <Button
-          asChild
-          size="lg"
-          className="bg-neutral-200 hover:bg-neutral-300 duration-300 rounded-full"
-        >
-          <Link href="docs">
-            <span className="text-nowrap text-black">
-              Documentation
-            </span>
-          </Link>
-        </Button>
-      </div>
-    </AnimatedGroup>
-  );
-}
-
-export default function HeroSection() {
-  // Blue color options only
-  const colorOptions = [
-    "bg-emerald-500",
-    "bg-neutral-950",
-    "bg-neutral-800",
-    "bg-neutral-900",
-    "bg-neutral-950",
-    "bg-emerald-500",
-  ];
-  
-  const [gridColors, setGridColors] = useState([]);
-  const [isMounted, setIsMounted] = useState(false);
-  const gridRef = useRef(null);
-
-  // Initialize only on client side
-  useEffect(() => {
-    setIsMounted(true);
-    // Initialize grid colors
-    setGridColors(
-      Array.from({ length: 24 }).map(
-        () => colorOptions[Math.floor(Math.random() * colorOptions.length)]
-      )
-    );
-
-    // GSAP animation
-    if (gridRef.current) {
-      gsap.from(gridRef.current.children, {
-        opacity: 0,
-        scale: 0,
-        stagger: 0.05,
-        duration: 0.5,
-        ease: "back.out(1.7)",
-      });
-    }
-  }, []);
-
-  // Color change interval - only run on client
-  useEffect(() => {
-    if (!isMounted) return;
-
-    const interval = setInterval(() => {
-      setGridColors(prev =>
-        prev.map(
-          () => colorOptions[Math.floor(Math.random() * colorOptions.length)]
-        )
-      );
-    }, 1000);
-    
-    return () => clearInterval(interval);
-  }, [isMounted]);
-
-  return (
-    <>
-      <HeroHeader />
-      <main className="overflow-hidden">
-       
-        <section className="h-[100vh] flex items-center">
-          <div className="mx-auto max-w-6xl px-6 w-full flex flex-col md:flex-row items-center md:items-start gap-12">
-            {/* Left Column: Texts and command box */}
-            <div className="flex-1">
-              <div className="sm:mx-auto lg:mr-auto lg:mt-0">
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  as="h1"
-                  className="mt-8 max-w-3xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 text-neutral-200"
-                >
-                  Modular Backend .
-                </TextEffect>
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  as="h1"
-                  className="mt-2 max-w-3xl text-balance text-5xl font-medium md:text-6xl text-emerald-500"
-                >
-                  Minimal Effort .
-                </TextEffect>
-                <TextEffect
-                  per="line"
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  delay={0.5}
-                  as="p"
-                  className="mt-10 max-w-2xl text-pretty text-lg text-neutral-300"
-                >
-                  Backend infrastructure, solved. Authentication, data, and
-                  messaging that integrate in minutes so you can ship features,
-                  not plumbing.
-                </TextEffect>
-
-                <CommandCopy />
-              </div>
-            </div>
-            
-            {/* Right Column: Color Grid */}
-            <div className="mt-16 flex-1 flex justify-center items-center">
-              <div ref={gridRef} className="grid grid-cols-4 gap-2 w-full max-w-sm">
-                {isMounted && gridColors.map((color, i) => (
-                  <motion.div
-                    key={i}
-                    className={`w-full h-16 rounded-lg ${color}`}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                ))}
-                {/* Fallback for SSR */}
-                {!isMounted && 
-                  Array.from({ length: 24 }).map((_, i) => (
-                    <div key={i} className="w-full h-16 rounded-lg bg-blue-500" />
-                  ))
-                }
-              </div>
-            </div>
+        {/* Code & Copy Indicator */}
+        <div className="relative flex items-center justify-between px-3 py-2">
+          <div className="flex-1">
+            <CodeBlock language="bash" code={command} />
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </motion.div>
+
+      {/* === CTA Buttons === */}
+      <div className="flex flex-wrap justify-center items-center gap-4">
+        <motion.a
+          href="/browse/auth-jwt"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+          className="px-6 py-2.5 rounded-full bg-emerald-500 text-neutral-950 text-sm font-semibold
+            shadow-[0_0_25px_rgba(0,255,180,0.25)] hover:bg-emerald-400 transition-colors duration-200"
+        >
+          Browse Components
+        </motion.a>
+
+        <motion.a
+          href="/docs"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+          className="px-6 py-2.5 rounded-full border border-white/10 text-neutral-300 text-sm font-semibold
+            hover:border-emerald-500/30 hover:text-emerald-300 hover:bg-neutral-900/40 
+            transition-all duration-200"
+        >
+          Documentation
+        </motion.a>
+      </div>
+    </motion.div>
+  );
+};
+//
+// === 3. Hero Section ===
+//
+export default function HeroSection() {
+  return (
+    <div className="relative min-h-screen bg-neutral-950 text-neutral-100 overflow-hidden">
+      <DynamicGridBackground />
+      <HeroHeader />
+
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-6 py-20">
+        <div className="mx-auto max-w-6xl w-full text-center">
+          {/* Tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 
+              bg-emerald-500/5 text-emerald-400 text-xs font-medium mb-8"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Ship features, not infrastructure
+          </motion.div>
+
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight"
+          >
+            <span className="text-neutral-100 drop-shadow-[0_1px_5px_rgba(255,255,255,0.1)]">
+              Modular Backend.
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
+              Minimal Effort.
+            </span>
+          </motion.h1>
+
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-neutral-400 leading-relaxed font-light"
+          >
+            Build scalable backends with one command. Authentication, data, and
+            messaging that integrate in minutes — so you can focus on features,
+            not configuration.
+          </motion.p>
+
+          {/* Command + Buttons */}
+          <CommandCopy />
+
+          {/* Feature tags */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-neutral-500"
+          >
+            {["Development Ready", "Extendable Ready", "Production Ready"].map((label) => (
+              <div key={label} className="flex items-center gap-2">
+                <svg
+                  className="w-5 h-5 text-emerald-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span>{label}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="text-neutral-600"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </motion.div>
+      </div>
+    </div>
   );
 }

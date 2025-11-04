@@ -1,3 +1,4 @@
+import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
           <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_80%_70%,rgba(0,255,255,0.04)_0%,transparent_90%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(80%_70%_at_50%_100%,rgba(255,255,255,0.02)_0%,transparent_100%)]" />
         </div>
+        <NextTopLoader color="#50C878" showAtBottom/>
         {children}
       </body>
     </html>

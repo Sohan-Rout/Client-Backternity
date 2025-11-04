@@ -15,7 +15,7 @@ export default function Home(){
       <Border />
     </section>
 
-    <section className="font-grotesk">
+    <section id="features" className="font-grotesk">
       <Content />
     </section>
 
@@ -23,7 +23,7 @@ export default function Home(){
       <Border />
     </section>
 
-    <section className="font-grotesk">
+    <section id="solutions" className="font-grotesk">
       <ComponentsShowcase />
     </section>
 
@@ -31,7 +31,7 @@ export default function Home(){
       <Border />
     </section>
 
-    <section className="font-grotesk">
+    <section id="testimonials" className="font-grotesk">
       <Testimonials />
     </section>
 
@@ -39,7 +39,7 @@ export default function Home(){
       <Border />
     </section>
 
-    <section className="font-grotesk  ">
+    <section id="contact" className="font-grotesk  ">
       <ContactUs />
     </section>
     </>

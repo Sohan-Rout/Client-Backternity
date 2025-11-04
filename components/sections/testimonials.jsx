@@ -53,7 +53,7 @@ export default function Testimonials() {
   return (
     <section
       ref={ref}
-      className="py-28 relative overflow-hidden bg-gradient-to-b from-background via-background/95 to-background/80"
+      className="py-28 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
