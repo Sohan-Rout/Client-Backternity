@@ -27,6 +27,9 @@ RUN pnpm install
 # Copy source code
 COPY . .
 
+# Set build-time environment variable (will be overridden at runtime)
+ENV RESEND_API_KEY=build_placeholder
+
 # Build the application
 RUN pnpm build
 

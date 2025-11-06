@@ -1,11 +1,16 @@
 
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
+// Initialize Resend with fallback for build time
+const resend = new Resend(process.env.RESEND_API_KEY || 'fallback_key_for_build');
 
 export async function POST(request) {
   try {
+    // Check if API key is properly configured at runtime
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'fallback_key_for_build') {
+      return Response.json({ error: 'Email service not configured' }, { status: 500 });
+    }
+
     const { name, email, message } = await request.json();
 
     // Validate the data
