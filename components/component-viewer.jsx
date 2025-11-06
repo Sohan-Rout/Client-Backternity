@@ -73,17 +73,17 @@ export default function ComponentViewer({ component }) {
       </header>
 
       {/* OVERVIEW */}
-            {component.documentation?.overview && (
-  <section id="overview">
-    <h2 className="text-2xl font-semibold mb-4 text-foreground tracking-tight">
-      Overview
-    </h2>
+      {component.documentation?.overview && (
+        <section id="overview">
+          <h2 className="text-2xl font-semibold mb-4 text-foreground tracking-tight">
+            Overview
+          </h2>
 
-    <div className="prose prose-invert prose-sm max-w-none text-foreground/90 leading-relaxed">
-      <ReactMarkdown>{component.documentation.overview}</ReactMarkdown>
-    </div>
-  </section>
-)}
+          <div className=" max-w-none text-foreground/90 leading-relaxed">
+            <ReactMarkdown>{component.documentation.overview}</ReactMarkdown>
+          </div>
+        </section>
+      )}
 
       {/* PREREQUISITE */}
       {component.documentation?.prerequisite && (
@@ -237,13 +237,12 @@ export default function ComponentViewer({ component }) {
           </p>
 
           <div className="space-y-4">
-  {component.documentation.frontendUsage.endpoints?.map((ep, i) => (
-    <div key={i} className="w-full">
-      <ApiTestButton endpoint={ep} />
-    </div>
-  ))}
-</div>
-
+            {component.documentation.frontendUsage.endpoints?.map((ep, i) => (
+              <div key={i} className="w-full">
+                <ApiTestButton endpoint={ep} />
+              </div>
+            ))}
+          </div>
 
           {component.documentation.frontendUsage.example && (
             <ExpandableCodeBlock
