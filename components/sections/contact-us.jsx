@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Mail, MessageSquare, Send, CheckCircle, Github, Twitter, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { MailIcon } from "lucide-react";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -54,10 +55,10 @@ export default function ContactUs() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-3">
-            Get in touch
+            Get in touch 
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            For partnerships, queries, or custom backend projects — we’re here to collaborate.
+            For partnerships, component related queries, or custom backend components/projects — we’re here to collaborate.
           </p>
         </div>
 
@@ -163,7 +164,7 @@ export default function ContactUs() {
               <h3 className="text-lg font-medium text-foreground mb-5">Reach us directly</h3>
               <div className="space-y-4 text-sm">
                 <div>
-                  <div className="font-medium text-foreground mb-1">Email</div>
+                  <div className="font-medium text-foreground mb-1"> <MailIcon className="inline mr-[1px] w-4 mb-[1px]"/> Email</div>
                   <p className="text-muted-foreground">team@backternity.dev</p>
                 </div>
               </div>

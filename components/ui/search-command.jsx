@@ -66,7 +66,7 @@ export default function SearchCommand() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open search command palette"
-        className="flex items-center justify-between w-[280px] px-4 py-2 
+        className="flex items-center justify-between w-[290px] px-3 py-[7px] 
           bg-card/70 text-foreground rounded-xl border border-border 
           shadow-sm hover:border-primary/50 hover:bg-card/80 
           transition-all duration-200"

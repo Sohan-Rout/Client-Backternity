@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ComponentRegistry from "@/lib/registry";
 import ComponentViewer from "@/components/component-viewer";
+import ContactUs from "@/components/sections/contact-us";
 
 
 /** 🔸 Skeleton loader mimicking ComponentViewer structure */

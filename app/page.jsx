@@ -1,6 +1,6 @@
 import HeroSection from "@/components/hero-section";
 import Content from "@/components/content-1";
-import Border from "@/components/ui/border";
+import EmeraldGlowDivider from "@/components/ui/EmeraldGlowDivider";
 import ComponentsShowcase from '@/components/sections/components-showcase';
 import Testimonials from '@/components/sections/testimonials';
 import ContactUs from '@/components/sections/contact-us';
@@ -12,7 +12,7 @@ export default function Home(){
     </section>
 
     <section>
-      <Border />
+      <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
     </section>
 
     <section id="features" className="font-grotesk">
@@ -20,7 +20,7 @@ export default function Home(){
     </section>
 
     <section>
-      <Border />
+      <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
     </section>
 
     <section id="solutions" className="font-grotesk">
@@ -28,7 +28,7 @@ export default function Home(){
     </section>
 
     <section>
-      <Border />
+      <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
     </section>
 
     <section id="testimonials" className="font-grotesk">
@@ -36,7 +36,7 @@ export default function Home(){
     </section>
 
     <section>
-      <Border />
+      <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
     </section>
 
     <section id="contact" className="font-grotesk  ">

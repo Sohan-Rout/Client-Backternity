@@ -24,7 +24,7 @@ const DynamicGridBackground = () => {
   // Auto-fit grid to viewport
   useEffect(() => {
     const calculateGrid = () => {
-      const boxSize = 80;
+      const boxSize = 20;
       const gap = 12;
       const totalBoxSize = boxSize + gap;
       const cols = Math.ceil(window.innerWidth / totalBoxSize) + 1;
@@ -139,7 +139,7 @@ const CommandCopy = () => {
           href="/browse/auth-jwt"
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-emerald-500 text-neutral-950 text-sm font-semibold
+          className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-emerald-500 text-neutral-950 text-sm font-semibold
             shadow-[0_0_25px_rgba(0,255,180,0.25)] hover:bg-emerald-400 transition-colors duration-200 text-center"
         >
           Browse Components
@@ -153,7 +153,7 @@ const CommandCopy = () => {
             hover:border-emerald-500/30 hover:text-emerald-300 hover:bg-neutral-900/40 
             transition-all duration-200 text-center"
         >
-          Documentation
+          Contact Us
         </motion.a>
       </div>
     </motion.div>
@@ -190,7 +190,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] sm:leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.1] sm:leading-tight"
           >
             <span className="text-neutral-100 drop-shadow-[0_1px_5px_rgba(255,255,255,0.1)]">
               Modular Backend.
@@ -223,7 +223,7 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 1.2 }}
             className="mt-12 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-neutral-500 px-4"
           >
-            {["Development Ready", "Extendable Ready", "Production Ready"].map((label) => (
+            {["Development Ready", "Extendable Ready", "Developer Ready"].map((label) => (
               <div key={label} className="flex items-center gap-2">
                 <svg
                   className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0"
