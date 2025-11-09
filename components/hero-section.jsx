@@ -8,8 +8,8 @@ import MeshGradientBackground from "./ui/MeshGradient";
 // FeatureCard
 const FeatureCard = ({ title, description, icon: Icon, delay }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
     transition={{ delay, duration: 0.6, ease: "easeOut" }}
     className="group relative overflow-hidden rounded-2xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-4 sm:p-6 hover:border-emerald-500/30 transition-all duration-300"
   >
@@ -40,8 +40,8 @@ const CodeShowcase = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1.0, duration: 0.5 }}
       className="rounded-2xl bg-neutral-900/60 backdrop-blur-md border border-neutral-800/50 p-4 sm:p-6 overflow-hidden"
     >
@@ -88,27 +88,23 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20 flex items-center min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full items-center">
           {/* LEFT */}
-          {/* Left: Main content */}{" "}
+          {/* Left: Main content */}
           <div className="space-y-6 lg:space-y-8">
-            {" "}
-            {/* Badge */}{" "}
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm"
             >
-              {" "}
               <span className="relative flex h-2 w-2">
-                {" "}
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />{" "}
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />{" "}
-              </span>{" "}
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
               <span className="text-emerald-400 text-sm font-switzer-medium">
-                {" "}
-                What's new{" "}
-              </span>{" "}
-            </motion.div>{" "}
+                What's new
+              </span>
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -264,13 +260,13 @@ export default function HeroSection() {
               icon={Key}
               title="Auth Modules"
               description="Plug in ready-to-use authentication systems — JWT, OAuth, and session-based auth with minimal setup and full TypeScript support."
-              delay={0.6}
+              delay={0.4}
             />
             <FeatureCard
               icon={Database}
               title="Database Connectors"
               description="Integrate MongoDB, PostgreSQL, or any supported database instantly with typed models and prebuilt CRUD operations."
-              delay={0.8}
+              delay={0.4}
             />
             <div className="col-span-1 sm:col-span-2">
               <CodeShowcase />

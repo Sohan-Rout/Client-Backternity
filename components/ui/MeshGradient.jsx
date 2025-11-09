@@ -46,7 +46,7 @@ export default function MeshGradientBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="inset-0">
       {/* Mesh gradient layer */}
       <div 
         className="absolute inset-0"
@@ -63,12 +63,12 @@ export default function MeshGradientBackground() {
       {/* Grain overlay */}
       <canvas 
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{ opacity: 0.6 }}
+        className="absolute inset-0 pointer-events-none opacity-60"
+        
       />
       
       {/* Dark overlay for content readability */}
-      <div className="absolute inset-0 bg-neutral-950/40" />
+      <div className="absolute inset-0 bg-neutral-950/45" />
     </div>
   );
 };

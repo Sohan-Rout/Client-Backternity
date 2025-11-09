@@ -1,12 +1,12 @@
 import HeroSection from "@/components/hero-section";
-import Content from "@/components/content-1";
+import Content from "@/components/content";
 import EmeraldGlowDivider from "@/components/ui/EmeraldGlowDivider";
 import ComponentsShowcase from '@/components/sections/components-showcase';
 import Testimonials from '@/components/sections/testimonials';
 import ContactUs from '@/components/sections/contact-us';
 export default function Home(){
   return(
-    <>
+    <div>
     <section className="font-grotesk">
       <HeroSection/>
     </section>
@@ -42,6 +42,6 @@ export default function Home(){
     <section id="contact" className="font-grotesk  ">
       <ContactUs />
     </section>
-    </>
+    </div>
   )
 }
