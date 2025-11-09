@@ -111,7 +111,6 @@ export default function HeroSection() {
       console.error("Failed to copy:", err);
     }
   };
-
   return (
     <div className="relative min-h-screen bg-neutral-950 text-neutral-100 overflow-hidden">
       <MeshGradientBackground />
