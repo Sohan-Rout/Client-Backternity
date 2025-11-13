@@ -431,13 +431,13 @@ export const HeroHeader = () => {
                   </button>
                 </li>
 
-                <Link href="/playground">
+                {/* <Link href="/playground">
                   <button
                     className="text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
                   >
                     Playground
                   </button>
-                </Link>
+                </Link> */}
               </ul>
             </div>
 
