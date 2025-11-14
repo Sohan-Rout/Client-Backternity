@@ -149,12 +149,12 @@ export default function Testimonials() {
           <span className="hidden sm:block w-px h-4 bg-neutral-800" />
           <div className="flex items-center gap-2">
             <TrendingUp className="w-3.5 h-3.5 text-emerald-400/80" />
-            <span>99.9% Uptime SLA</span>
+            <span>Increases developer productivity</span>
           </div>
           <span className="hidden sm:block w-px h-4 bg-neutral-800" />
           <div className="flex items-center gap-2">
             <Code2 className="w-3.5 h-3.5 text-emerald-400/80" />
-            <span>Open Source</span>
+            <span>Open to use</span>
           </div>
         </motion.div>
       </div>

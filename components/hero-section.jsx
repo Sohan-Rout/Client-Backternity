@@ -290,7 +290,7 @@ export default function HeroSection() {
             <FeatureCard
               icon={Key}
               title="Auth Modules"
-              description="Plug in ready-to-use authentication systems — JWT, OAuth, and session-based auth with minimal setup and full TypeScript support."
+              description="Plug in ready-to-use authentication systems — JWT, OAuth, and session-based auth with minimal setup."
               delay={0.4}
             />
             <FeatureCard
