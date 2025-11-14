@@ -1,5 +1,6 @@
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
   metadataBase: new URL("https://backternity.dev"),
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
         <NextTopLoader color="#50C878" showAtBottom />
         {children}
       </body>
+      <GoogleAnalytics gaId="G-1YLP9NEWXL" /> 
     </html>
   );
 }
