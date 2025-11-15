@@ -117,10 +117,10 @@ export default function HeroSection() {
       <HeroHeader />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-20 flex items-center min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 sm:py-10 md:py-10 w-full items-center">
           {/* LEFT */}
           {/* Left: Main content */}
-          <div className="space-y-6 lg:space-y-8">
+          <div className="space-y-6 lg:space-y-8 py-10  ">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
