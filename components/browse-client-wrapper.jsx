@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import ComponentSidebar from "@/components/component-sidebar";
 import TableOfContents from "@/components/table-of-contents";
@@ -8,23 +5,17 @@ import ComponentRegistry from "@/lib/registry";
 import { HeroHeader } from "@/components/header";
 import ContactUs from "@/components/sections/contact-us";
 import EmeraldDivider from "@/components/ui/emeraldDivider";
+import { ScrollDetector } from "@/components/scroll-detector";
+import { MobileSidebarButton } from "@/components/mobile-sidebar-button";
 
 export function BrowseClientWrapper({ children }) {
-  const [scrolled, setScrolled] = useState(false);
   const components = Object.entries(ComponentRegistry);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleMobileSidebar = () => {
-    alert("Mobile sidebar would open here");
-  };
 
   return (
     <>
+      {/* Scroll detection - tiny client component */}
+      <ScrollDetector />
+      
       {/* Spotlight search with aria-hidden if decorative or implemented accessibly */}
       <Spotlight />
 
@@ -66,15 +57,7 @@ export function BrowseClientWrapper({ children }) {
       </section>
 
       {/* Mobile navigation drawer trigger */}
-      <div className="lg:hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30">
-        <button
-          className="bg-emerald-500 hover:bg-emerald-400 text-neutral-950 px-4 py-2 rounded-full text-sm font-medium shadow-lg transition-colors"
-          onClick={handleMobileSidebar}
-          aria-label="Open browse components sidebar"
-        >
-          Browse Components
-        </button>
-      </div>
+      <MobileSidebarButton components={components} />
     </>
   );
 }
