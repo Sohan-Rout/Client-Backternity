@@ -1,4 +1,5 @@
 import { BrowseClientWrapper } from "@/components/browse-client-wrapper";
+import Script from "next/script";
 
 // Enhanced and expanded SEO metadata
 export const metadata = {
@@ -54,12 +55,64 @@ export const metadata = {
     title: "Browse Components - Backternity",
     description: "Explore ready-made backend modules designed for speed, security, and reliability.",
     images: ["/api/og?section=browse"]
-  },
-  // Structured data for better rich results
-  other: [
+  }
+};
+
+// Structured data for the browse page
+const browseSchemaData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Backternity Backend Component Library",
+  description: "Explore production-ready, modular backend components for Express, databases, auth, and scalable API development.",
+  url: "https://backternity.dev/browse",
+  itemListElement: [
     {
-      rel: "preconnect",
-      url: "https://www.googletagmanager.com",
+      "@type": "ListItem",
+      position: 1,
+      name: "JWT Authentication",
+      url: "https://backternity.dev/browse/auth-jwt",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "MongoDB Database",
+      url: "https://backternity.dev/browse/database-mongodb",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "PostgreSQL with Prisma",
+      url: "https://backternity.dev/browse/postgresql-prisma-express-js",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "AWS S3 Upload",
+      url: "https://backternity.dev/browse/aws-s3-upload",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "Razorpay Payment Gateway",
+      url: "https://backternity.dev/browse/razorpay-gateway-express-js",
+    },
+    {
+      "@type": "ListItem",
+      position: 6,
+      name: "Rate Limiter",
+      url: "https://backternity.dev/browse/rate-limiter",
+    },
+    {
+      "@type": "ListItem",
+      position: 7,
+      name: "Winston Logger",
+      url: "https://backternity.dev/browse/logger-winston",
+    },
+    {
+      "@type": "ListItem",
+      position: 8,
+      name: "Redis Cache",
+      url: "https://backternity.dev/browse/cache-redis",
     }
   ]
 };
@@ -67,50 +120,20 @@ export const metadata = {
 // Use semantic HTML, main regions, and accessibility features
 export default function BrowseLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        {/* Structured data (JSON-LD) for product library */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              name: "Backternity Backend Component Library",
-              description: "Explore production-ready, modular backend components for Express, databases, auth, and scalable API development.",
-              url: "https://backternity.dev/browse",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Express Middleware",
-                  url: "https://backternity.dev/browse/express",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Authentication Modules",
-                  url: "https://backternity.dev/browse/auth",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: "Database Connectors",
-                  url: "https://backternity.dev/browse/database",
-                }
-              ]
-            })
-          }}
-        />
-      </head>
-      <body className="min-h-screen bg-neutral-950 text-neutral-200">
-        {/* Accessibility: Add skip nav and semantic main container */}
-        <main id="browse-main" tabIndex={-1}>
-          <BrowseClientWrapper>
-            {children}
-          </BrowseClientWrapper>
-        </main>
-      </body>
-    </html>
+    <>
+      {/* Structured data (JSON-LD) for product library */}
+      <Script
+        id="browse-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(browseSchemaData)
+        }}
+      />
+      
+      {/* Accessibility: Add semantic main container */}
+      <BrowseClientWrapper>
+        {children}
+      </BrowseClientWrapper>
+    </>
   );
 }
