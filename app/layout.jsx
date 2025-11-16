@@ -127,9 +127,9 @@ export default function RootLayout({ children }) {
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>
-          <Footer/>
+        <Footer/>
+        <GoogleAnalytics gaId="G-1YLP9NEWXL" />
       </body>
-      <GoogleAnalytics gaId="G-1YLP9NEWXL" />
     </html>
   );
 }
