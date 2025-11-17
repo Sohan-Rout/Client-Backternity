@@ -3,6 +3,10 @@ const nextConfig = {
   // Optimize for Cloud Run deployment
   output: "standalone",
 
+  env:{
+    RESEND_API_KEY: "re_EFUteYbN_FQa4nNU768KZtoZDH5gGNYCY"
+  },
+
   // Enable compression
   compress: true,
 
