@@ -3,15 +3,16 @@ import Script from "next/script";
 
 // Enhanced and expanded SEO metadata
 export const metadata = {
-  title: "Browse Components - Backternity",
+  title: "Browse Backend Components | Backternity",
   description:
-    "Explore production-ready backend components for Express.js, authentication, databases, storage, and more. Build scalable APIs quickly with modular tools and reusable code blocks designed for enterprise-grade reliability.",
+    "Explore 15+ production-ready backend components for Express.js, authentication, databases, storage, and more. Build scalable APIs quickly with modular tools and reusable code blocks designed for enterprise-grade reliability.",
   keywords: [
     "backend components",
-    "express",
+    "browse backend solutions",
+    "express components",
     "node.js",
     "authentication",
-    "database",
+    "database integration",
     "api generator",
     "api toolkit",
     "microservices",
@@ -19,31 +20,46 @@ export const metadata = {
     "reusable components",
     "express middleware",
     "jwt authentication",
-    "mongodb",
+    "mongodb integration",
     "postgresql",
+    "websocket implementation",
+    "rate limiting",
     "api security",
     "api design",
     "production-ready backend",
     "serverless",
     "cloud backend",
     "fast api development",
-    "backend orchestration"
+    "backend orchestration",
+    "backend component library"
   ],
+  authors: [{ name: "Sparsh Sharma", url: "https://linkedin.com/in/sparshdev" }],
+  creator: "Sparsh Sharma",
+  publisher: "Backternity",
   alternates: {
     canonical: "https://backternity.dev/browse" // Use absolute for canonical links
   },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
     title: "Browse Backend Components - Backternity",
-    description: "Discover ready-to-use backend components for rapid API development and scalable infrastructure.",
+    description: "Discover 15+ ready-to-use backend components for rapid API development and scalable infrastructure.",
     type: "website",
     url: "https://backternity.dev/browse",
+    siteName: "Backternity",
+    locale: "en_US",
     images: [
       {
-        url: "/api/og?section=browse",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "Backternity Component Library"

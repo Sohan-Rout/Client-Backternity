@@ -1,6 +1,7 @@
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from "@/components/sections/Footer";
 
 // Enhanced Metadata for SEO
@@ -12,17 +13,14 @@ export const metadata = {
   },
   description:
     "Build scalable backend systems in minutes with modular, production-ready components. Modular Backend. Minimal Effort. Authentication, data, and messaging that integrate in minutes.",
+  authors: [{ name: "Sparsh Sharma", url: "https://linkedin.com/in/sparshdev" }],
+  creator: "Sparsh Sharma",
+  publisher: "Backternity",
+  // Next.js automatically detects favicon.ico in the app folder
   icons: {
-    icon: [
-      { url: "/fav.png", type: "image/png" },
-      { url: "/fav.png", sizes: "32x32", type: "image/png" },
-      { url: "/fav.png", sizes: "16x16", type: "image/png" },
-    ],
-    shortcut: [{ url: "/fav.png", type: "image/png" }],
-    apple: [{ url: "/fav.png", type: "image/png" }],
-    other: [
-      { rel: "icon", url: "/fav.png" },
-    ],
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
     title: "Backternity - Build Scalable Backends with One Command",
@@ -97,6 +95,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Additional SEO Meta Tags */}
+        <meta name="application-name" content="Backternity" />
+        <meta property="og:site_name" content="Backternity" />
+        
         {/* JSON-LD Structured Data for Rich Snippets */}
         <script
           type="application/ld+json"
@@ -114,8 +116,13 @@ export default function RootLayout({ children }) {
               ],
               publisher: {
                 "@type": "Organization",
-                name: "Backternity.dev",
+                name: "Backternity",
                 url: "https://backternity.dev",
+              },
+              creator: {
+                "@type": "Person",
+                name: "Sparsh Sharma",
+                url: "https://linkedin.com/in/sparshdev",
               },
             }),
           }}
@@ -128,6 +135,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer/>
+        <SpeedInsights />
         <GoogleAnalytics gaId="G-1YLP9NEWXL" />
       </body>
     </html>

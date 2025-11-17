@@ -4,7 +4,7 @@ import ComponentViewer from "@/components/component-viewer";
 
 // Generate dynamic metadata for each component page
 export async function generateMetadata({ params }) {
-  const { slug } = await params;  // params is an object, no need to await here
+  const { slug } = await params;
   const component = ComponentRegistry[slug];
 
   if (!component) {
@@ -26,29 +26,47 @@ export async function generateMetadata({ params }) {
   // Keep description under Google snippet limits (~160 chars)
   const desc = short.length > 160 ? short.slice(0, 157) + "…" : short;
 
+  // Generate comprehensive keywords based on component details
+  const baseKeywords = [
+    `${name}`,
+    `${name} component`,
+    `${name} backend`,
+    `${name} implementation`,
+    type,
+    `${type} component`,
+    ...(component.tags || []),
+    slug,
+    "express.js",
+    "node.js backend",
+    "backend component",
+    "api development",
+    "modular backend",
+    "production ready",
+    "backend template",
+    "express middleware",
+    "backend integration",
+    "scalable backend",
+    "backend architecture",
+  ];
+
   return {
     title: `${name} – ${type[0].toUpperCase() + type.slice(1)} Component | Backternity`,
     description: desc,
-    keywords: [
-      type,
-      ...(component.tags || []),
-      name.toLowerCase(),
-      slug,
-      "express",
-      "node",
-      "backend",
-      "api",
-      "modular backend",
-      "production ready",
-    ],
+    keywords: baseKeywords,
+    authors: [{ name: "Sparsh Sharma", url: "https://linkedin.com/in/sparshdev" }],
+    creator: "Sparsh Sharma",
+    publisher: "Backternity",
+    category: "Technology",
     openGraph: {
-      title: name,
+      title: `${name} - Backend Component`,
       description: desc,
       type: "article",
       url: `https://backternity.dev/browse/${slug}`,
+      siteName: "Backternity",
+      locale: "en_US",
       images: [
         {
-          url: `/api/og?component=${encodeURIComponent(name)}&type=${type}`,
+          url: `/opengraph-image.png`,
           width: 1200,
           height: 630,
           alt: `${name} component preview`,
@@ -57,9 +75,10 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: name,
+      title: `${name} - Backend Component`,
       description: desc,
-      images: [`/api/og?component=${encodeURIComponent(name)}&type=${type}`],
+      images: [`/opengraph-image.png`],
+      creator: "@backternity",
     },
     alternates: {
       canonical: `https://backternity.dev/browse/${slug}`,
