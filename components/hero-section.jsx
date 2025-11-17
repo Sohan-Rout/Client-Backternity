@@ -204,10 +204,10 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-4 py-2"
             >
               <a
-                href="/browse/razorpay-gateway-express-js"
+                href="/browse/socket-io"
                 className="text-sm font-switzer-light flex items-center gap-1 hover:gap-2 duration-100 transition-all text-neutral-300 hover:text-white"
               >
-                Razorpay Payment Component
+                Socket-IO
                 <span>
                   <MoveRight size={16} aria-hidden="true" />
                 </span>
