@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Star, Quote, Code2, Shield, TrendingUp, Linkedin } from "lucide-react";
 import { IconBrandLinkedin } from "@tabler/icons-react";
@@ -37,21 +36,15 @@ const stats = [
 
 export default function Testimonials() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section
       ref={ref}
       className="relative overflow-hidden py-20 sm:py-28 md:py-32 bg-gradient-to-b from-black via-neutral-950 to-[#001510] text-neutral-100"
     >
-
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-16 sm:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-switzer-semibold tracking-tight leading-tight text-white mb-4">
@@ -64,16 +57,13 @@ export default function Testimonials() {
             Real feedback from engineers building scalable systems with modular
             backend components.
           </p>
-        </motion.div>
+        </div>
 
         {/* Testimonials */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-20">
           {testimonials.map((t, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group relative border border-neutral-800/60 bg-neutral-900/50 rounded-2xl p-6 backdrop-blur-sm hover:border-emerald-500/25 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] transition-all duration-300"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500 pointer-events-none" />
@@ -135,15 +125,12 @@ export default function Testimonials() {
                   </a>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+        <div
           className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center border-t border-neutral-800/60 pt-12"
         >
           {stats.map((s, i) => (
@@ -156,13 +143,10 @@ export default function Testimonials() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Trust Line */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
+        <div
           className="mt-16 flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm text-neutral-500"
         >
           <div className="flex items-center gap-2">
@@ -179,7 +163,7 @@ export default function Testimonials() {
             <Code2 className="w-3.5 h-3.5 text-emerald-400/80" />
             <span>Open to use</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

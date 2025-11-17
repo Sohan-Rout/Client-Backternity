@@ -1,16 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { MoveRight, Settings, Key, Database, Copy, Check } from "lucide-react";
 import { HeroHeader } from "./header";
 import MeshGradientBackground from "./ui/MeshGradient";
+import Link from "next/link";
 
 // FeatureCard with semantic tags and aria-labels
 const FeatureCard = ({ title, description, icon: Icon, delay }) => (
-  <motion.article // article for standalone content block
-    initial={{ opacity: 0, x: 20 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ delay, duration: 0.6, ease: "easeOut" }}
+  <article // article for standalone content block
     className="group relative overflow-hidden rounded-2xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-4 sm:p-6 hover:border-emerald-500/30 transition-all duration-300"
     aria-label={`${title} feature`}
   >
@@ -26,7 +23,7 @@ const FeatureCard = ({ title, description, icon: Icon, delay }) => (
       </p>
     </div>
     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-  </motion.article>
+  </article>
 );
 
 // CodeShowcase remains largely same with minor aria roles
@@ -51,12 +48,9 @@ const CodeShowcase = () => {
   };
 
   return (
-    <motion.div
+    <div
       role="region"
       aria-label="Command line interface code examples"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1.0, duration: 0.5 }}
       className="rounded-2xl bg-neutral-900/60 backdrop-blur-md border border-neutral-800/50 p-4 sm:p-6 overflow-hidden"
     >
       <div className="flex flex-wrap gap-2 mb-3 sm:mb-4" role="tablist">
@@ -109,7 +103,7 @@ const CodeShowcase = () => {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -179,10 +173,7 @@ export default function HeroSection() {
           {/* LEFT: Main Content */}
           <div className="space-y-6 lg:space-y-6 py-8">
             {/* Badge - Use meaningful labels */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm"
               aria-label="Latest feature announcement"
               role="note"
@@ -194,13 +185,10 @@ export default function HeroSection() {
               <span className="text-emerald-400 text-sm font-switzer-medium">
                 What's new
               </span>
-            </motion.div>
+            </div>
 
             {/* Link to featured component */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
               className="inline-flex items-center gap-2 px-4 py-2"
             >
               <a
@@ -212,13 +200,10 @@ export default function HeroSection() {
                   <MoveRight size={16} aria-hidden="true" />
                 </span>
               </a>
-            </motion.div>
+            </div>
 
             {/* Main Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className="space-y-6"
             >
               <h1 className="text-5xl lg:text-7xl font-switzer-bold tracking-tight leading-tight">
@@ -232,20 +217,14 @@ export default function HeroSection() {
                 Build scalable backends with one command. Authentication, data,
                 and messaging that integrate in minutes.
               </p>
-            </motion.div>
+            </div>
 
             {/* Call To Action */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <div
               className="space-y-4"
             >
               {/* Command strip - interactive with copy */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+              <div
                 className="relative w-full sm:w-[55vw] sm:-ml-6 lg:-mx-[60vw] mb-8 sm:mb-12 lg:left-[80%] lg:right-[50%]"
                 onClick={() => copyToClipboard("npx backternity@latest init")}
                 role="button"
@@ -282,23 +261,18 @@ export default function HeroSection() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               <div className="flex flex-wrap">
-                <motion.a
+                <Link
                   href="/browse/auth-jwt"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                   className="px-6 py-3 rounded-full bg-emerald-500 text-neutral-950 font-switzer-semibold shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 transition-colors text-center"
                 >
                   Browse Components
-                </motion.a>
+                </Link>
               </div>
               {/* Trust indicators */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+              <div
                 className="flex flex-wrap gap-6 text-sm text-neutral-500 font-switzer-light pt-6"
               >
                 {["Development Ready", "Extendable", "Developer Friendly"].map(
@@ -320,8 +294,8 @@ export default function HeroSection() {
                     </div>
                   )
                 )}
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
 
           {/* RIGHT Side: Feature Cards and Code Example */}
@@ -344,10 +318,7 @@ export default function HeroSection() {
             />
 
             {/* Notification subscription card */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
+            <div
               className="col-span-1 sm:col-span-2 group relative overflow-hidden rounded-2xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-4 sm:p-6 hover:border-emerald-500/30 transition-all duration-300"
             >
               <div className="relative z-10 space-y-4">
@@ -385,10 +356,7 @@ export default function HeroSection() {
 
                 {/* Status message */}
                 {submitStatus && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
+                  <div
                     className={`text-xs sm:text-sm font-switzer-light px-3 py-2 rounded-lg inline-block ${
                       submitStatus.type === "success"
                         ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"
@@ -397,11 +365,11 @@ export default function HeroSection() {
                     role="alert"
                   >
                     {submitStatus.message}
-                  </motion.div>
+                  </div>
                 )}
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.div>
+            </div>
 
             <div className="col-span-1 sm:col-span-2">
               <CodeShowcase />
@@ -411,9 +379,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      <div
         className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 text-neutral-600"
         aria-hidden="true"
       >
@@ -430,7 +396,7 @@ export default function HeroSection() {
             d="M19 14l-7 7m0 0l-7-7m7 7V3"
           />
         </svg>
-      </motion.div>
+      </div>
     </section>
   );
 }

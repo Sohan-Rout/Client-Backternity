@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   Code,
@@ -68,10 +67,7 @@ export default function ComponentsShowcase() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+        <div
           className="text-center mb-16 sm:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-switzer-semibold text-white mb-5 tracking-tight leading-tight">
@@ -85,27 +81,18 @@ export default function ComponentsShowcase() {
             security, and speed. Built for developers who value simplicity and
             precision.
           </p>
-        </motion.div>
+        </div>
 
         {/* Component grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ staggerChildren: 0.08 }}
-          variants={{
-            hidden: { opacity: 0, y: 15 },
-            visible: { opacity: 1, y: 0 },
-          }}
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-20 sm:mb-24"
         >
           {componentCategories.map((category, i) => {
             const Icon = category.icon;
             return (
-              <motion.div
+              <div
                 key={i}
                 className="group relative p-5 sm:p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800/60 backdrop-blur-sm hover:border-emerald-500/25 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] transition-all duration-300"
-                whileHover={{ y: -3 }}
               >
                 {/* Emerald light sweep */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
@@ -139,16 +126,13 @@ export default function ComponentsShowcase() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+        <div
           className="text-center"
         >
           <Link
@@ -158,7 +142,7 @@ export default function ComponentsShowcase() {
             Browse All Components
             <ArrowRight className="w-4 h-4" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

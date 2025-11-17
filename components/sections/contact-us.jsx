@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -59,10 +58,7 @@ export default function ContactUs() {
 
       <div className="max-w-6xl mx-auto px-6 relative">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-16 sm:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-switzer-semibold text-white mb-4 tracking-tight">
@@ -71,14 +67,11 @@ export default function ContactUs() {
           <p className="text-sm sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed font-switzer-light">
             For partnerships, collaborations, or custom backend components — let’s build something powerful together.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="p-8 rounded-2xl border border-neutral-800/60 bg-neutral-900/50 backdrop-blur-sm hover:border-emerald-500/25 hover:shadow-[0_0_25px_rgba(16,185,129,0.1)] transition-all duration-300"
           >
             <div className="flex items-center mb-6">
@@ -182,13 +175,10 @@ export default function ContactUs() {
                 </form>
               </>
             )}
-          </motion.div>
+          </div>
 
           {/* Sidebar Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <div
             className="space-y-8"
           >
             {/* Contact Info */}
@@ -234,7 +224,7 @@ export default function ContactUs() {
               </div>
             </div>
 
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
