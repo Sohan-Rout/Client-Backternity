@@ -5,11 +5,13 @@ export default function robots() {
     rules: [
       {
         userAgent: "*",        // Applies to all bots
-        allow: "/",            // Allow crawling of everything except disallowed paths
-        disallow: ["/private/", "/admin/"], // Disallow sensitive or admin paths
+        allow: "/",            // Allow crawling of everything
+      },
+      {
+        userAgent: "GPTBot",   // OpenAI's web crawler
+        allow: "/",            // Allow AI training (optional - set to disallow if you don't want)
       },
     ],
     sitemap: `${domain}/sitemap.xml`,  // Explicit location of your sitemap
-    host: domain,                     // Preferred host for crawling
   };
 }

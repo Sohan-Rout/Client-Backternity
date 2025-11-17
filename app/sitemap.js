@@ -26,7 +26,6 @@ export default function sitemap() {
       changefreq: 'daily',
       priority: 0.9,
     },
-    // Optionally add more static important pages:
   ];
 
   // Merge static and dynamic URLs
