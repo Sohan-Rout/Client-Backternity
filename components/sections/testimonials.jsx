@@ -2,48 +2,37 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Star, Quote, Code2, Shield, TrendingUp } from "lucide-react";
+import { Star, Quote, Code2, Shield, TrendingUp, Linkedin } from "lucide-react";
+import { IconBrandLinkedin } from "@tabler/icons-react";
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    role: "Senior Backend Developer",
-    company: "TechFlow Inc.",
+    name: "Harshit Malik",
+    role: "Generative AI Engineer",
+    company: "StatusNeo",
+    image: "/harshit-malik.jpeg",
+    linkedin: "https://www.linkedin.com/in/harshitmalik22/",
     content:
-      "Backternity's JWT authentication saved us weeks of boilerplate. Secure, type-safe, and effortlessly integrated.",
+      "It has made the Backend game more easy and efficient for me",
     rating: 5,
   },
   {
-    name: "Marcus Rodriguez",
-    role: "Engineering Lead",
-    company: "DataStream Solutions",
+    name: "Sparsh Sharma",
+    role: "Founder",
+    company: "Backternity",
+    image: "/sparsh-sharma.png",
+    linkedin: "https://linkedin.com/in/sparshdev",
     content:
-      "The MongoDB integration removed all schema chaos. Clean APIs, fast queries, and robust error handling.",
-    rating: 5,
-  },
-  {
-    name: "Emily Watson",
-    role: "Full Stack Developer",
-    company: "CloudTech",
-    content:
-      "Rate limiting and caching let us scale without stress. We built resilient infrastructure in days, not weeks.",
-    rating: 5,
-  },
-  {
-    name: "David Kim",
-    role: "CTO",
-    company: "InnovateLabs",
-    content:
-      "Every component breathes security — validation, encryption, and audit logging baked in. Trust by design.",
+      "Couldn't believe myself that I am using backternity for backend",
     rating: 5,
   },
 ];
 
 const stats = [
-  { label: "Lines of Code Saved", value: "25k+" },
-  { label: "Active Developers", value: "2.3k+" },
-  { label: "Faster Development", value: "80%" },
-  { label: "Security Score", value: "99.97%" },
+  { label: "Weekly NPM Downloads", value: "600+" },
+  { label: "Active Users", value: "100+" },
+  { label: "Countries", value: "6+" },
+  { label: "Backend Components", value: "15+" },
 ];
 
 export default function Testimonials() {
@@ -87,7 +76,7 @@ export default function Testimonials() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group relative border border-neutral-800/60 bg-neutral-900/50 rounded-2xl p-6 backdrop-blur-sm hover:border-emerald-500/25 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] transition-all duration-300"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500 pointer-events-none" />
 
               <div className="relative mb-5">
                 <Quote className="absolute -top-1 -left-1 w-5 h-5 text-emerald-400/20" />
@@ -96,7 +85,7 @@ export default function Testimonials() {
                 </p>
               </div>
 
-              <div className="flex mb-3">
+              <div className="flex mb-3 relative z-10">
                 {[...Array(t.rating)].map((_, j) => (
                   <Star
                     key={j}
@@ -105,12 +94,46 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <div>
-                <div className="font-medium text-white">{t.name}</div>
-                <div className="text-sm text-neutral-400">
-                  {t.role} —{" "}
-                  <span className="text-emerald-400/80">{t.company}</span>
+              <div className="flex items-center justify-between gap-3 relative z-10">
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                  {t.image && (
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-emerald-500/20 flex-shrink-0"
+                    />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-white truncate">
+                      {t.linkedin ? (
+                        <a
+                          href={t.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-emerald-400 transition-colors duration-200 cursor-pointer"
+                        >
+                          {t.name}
+                        </a>
+                      ) : (
+                        t.name
+                      )}
+                    </div>
+                    <div className="text-xs sm:text-sm text-neutral-400 truncate">
+                      {t.role} —{" "}
+                      <span className="text-emerald-400/80">{t.company}</span>
+                    </div>
+                  </div>
                 </div>
+                {t.linkedin && (
+                  <a
+                    href={t.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 p-2 rounded-lg border border-neutral-800/60 bg-neutral-900/50 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-200 group/linkedin cursor-pointer"
+                  >
+                    <IconBrandLinkedin className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-400 group-hover/linkedin:text-emerald-400 transition-colors" />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
