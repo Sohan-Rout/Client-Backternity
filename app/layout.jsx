@@ -1,8 +1,8 @@
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from "@/components/sections/Footer";
+import { HeroHeader } from "@/components/header";
 
 // Enhanced Metadata for SEO
 export const metadata = {
@@ -131,11 +131,11 @@ export default function RootLayout({ children }) {
       <body className="text-foreground antialiased selection:bg-primary selection:text-primary-foreground min-w-[320px] max-w-[100vw] overflow-x-hidden">
         {/* Accessibility: Provide skip navigation and semantic containers */}
         <NextTopLoader color="#50C878" showAtBottom />
+        <HeroHeader/>
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>
         <Footer/>
-        <SpeedInsights />
         <GoogleAnalytics gaId="G-1YLP9NEWXL" />
       </body>
     </html>

@@ -166,7 +166,6 @@ export default function HeroSection() {
       className="relative min-h-screen bg-neutral-950 text-neutral-100 overflow-hidden"
     >
       <MeshGradientBackground aria-hidden="true" />
-      <HeroHeader />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-18 flex items-center min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 sm:py-10 md:py-10 w-full items-center">

@@ -248,6 +248,34 @@ html {
   line-height: 1.5;
 }
 
+.beam {
+  position: absolute;
+  top: 0;
+  left: -20%;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 255, 180, 0.6) 40%,
+    rgba(0, 255, 180, 0.9) 60%,
+    transparent 100%
+  );
+  filter: blur(4px);
+  animation: sweep 3s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(600%);
+  }
+}
+
+
 .text-scale-sm {
   font-size: 0.9rem; /* 14.4px */
   line-height: 1.5;
