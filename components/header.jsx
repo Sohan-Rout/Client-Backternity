@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, ThumbsUp, MoveRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScroll } from "motion/react";
@@ -133,7 +134,8 @@ function RequestAComponent() {
           </DialogTitle>
           <hr className="pb-2" />
           <DialogDescription id="dialog-desc">
-            We're excited to hear your ideas! Tell us about the backend component you need and we'll consider adding it to our library.
+            We're excited to hear your ideas! Tell us about the backend
+            component you need and we'll consider adding it to our library.
           </DialogDescription>
         </DialogHeader>
 
@@ -146,7 +148,8 @@ function RequestAComponent() {
               Request Submitted!
             </h4>
             <p className="text-sm text-muted-foreground">
-              Thank you for your suggestion. We'll review it and get back to you soon.
+              Thank you for your suggestion. We'll review it and get back to you
+              soon.
             </p>
           </div>
         ) : (
@@ -164,7 +167,10 @@ function RequestAComponent() {
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Your Name *
                   </label>
                   <InputGroup>
@@ -183,7 +189,10 @@ function RequestAComponent() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Email Address *
                   </label>
                   <InputGroup>
@@ -204,7 +213,10 @@ function RequestAComponent() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="componentName" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="componentName"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Component Name *
                   </label>
                   <InputGroup>
@@ -223,7 +235,10 @@ function RequestAComponent() {
                 </div>
 
                 <div>
-                  <label htmlFor="priority" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="priority"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Priority Level
                   </label>
                   <DropdownMenu>
@@ -236,8 +251,10 @@ function RequestAComponent() {
                         aria-expanded="false" // DropdownMenu manages this internally normally
                       >
                         {formData.priority === "Low" && "Low - Nice to have"}
-                        {formData.priority === "Medium" && "Med - Would be useful"}
-                        {formData.priority === "High" && "High - Really need this"}
+                        {formData.priority === "Medium" &&
+                          "Med - Would be useful"}
+                        {formData.priority === "High" &&
+                          "High - Really need this"}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent aria-label="Priority level selection">
@@ -245,11 +262,19 @@ function RequestAComponent() {
                       <DropdownMenuSeparator />
                       <DropdownMenuRadioGroup
                         value={formData.priority}
-                        onValueChange={(value) => setFormData({ ...formData, priority: value })}
+                        onValueChange={(value) =>
+                          setFormData({ ...formData, priority: value })
+                        }
                       >
-                        <DropdownMenuRadioItem value="Low">Low - Nice to have</DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="Medium">Med - Would be useful</DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="High">High - Really need this</DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="Low">
+                          Low - Nice to have
+                        </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="Medium">
+                          Med - Would be useful
+                        </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="High">
+                          High - Really need this
+                        </DropdownMenuRadioItem>
                       </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -257,7 +282,10 @@ function RequestAComponent() {
               </div>
 
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-foreground mb-2">
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
                   Component Description *
                 </label>
                 <InputGroup>
@@ -277,7 +305,10 @@ function RequestAComponent() {
               </div>
 
               <div>
-                <label htmlFor="useCase" className="block text-sm font-medium text-foreground mb-2">
+                <label
+                  htmlFor="useCase"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
                   Use Case (Optional)
                 </label>
                 <InputGroup>
@@ -296,7 +327,12 @@ function RequestAComponent() {
 
               <DialogFooter className="gap-3">
                 <DialogClose asChild>
-                  <Button type="button" variant="outline" className="border-white/10" disabled={isLoading}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="border-white/10"
+                    disabled={isLoading}
+                  >
                     Cancel
                   </Button>
                 </DialogClose>
@@ -331,6 +367,8 @@ function RequestAComponent() {
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const { scrollYProgress } = useScroll();
 
@@ -357,8 +395,28 @@ export const HeroHeader = () => {
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
-    smoothScrollTo(targetId);
+
+    if (targetId === "templates") {
+      router.push("/templates");
+      setMenuState(false);
+      return;
+    }
+
+    if (pathname === "/") {
+      smoothScrollTo(targetId);
+    } else {
+      router.push(`/#${targetId}`);
+    }
+    setMenuState(false);
   };
+
+  const navItems = [
+    "templates",
+    "features",
+    "solutions",
+    "testimonials",
+    "contact",
+  ];
 
   return (
     <>
@@ -371,25 +429,38 @@ export const HeroHeader = () => {
             scrolled ? "bg-black/20 backdrop-blur-2xl" : "backdrop-blur-2xl"
           )}
         >
-          <div className="mx-auto max-w-[85rem] min-w-0 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[105rem] min-w-0 px-4 sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between py-3 lg:py-4">
               {/* Logo */}
               <div className="flex items-center gap-4 sm:gap-8">
                 <div className="pr-4 sm:pr-8 border-r border-neutral-800">
                   <Link href="/" aria-label="Backternity Home">
-                    <Image src="/backternity.png" alt="Backternity Logo" width={160} height={80} />
+                    <Image
+                      src="/backternity.png"
+                      alt="Backternity Logo"
+                      width={160}
+                      height={80}
+                    />
                   </Link>
                 </div>
 
                 {/* Desktop Navigation */}
-                <ul className="hidden lg:flex gap-6 xl:gap-8 text-sm font-medium" role="menubar">
-                  {["features", "solutions", "testimonials", "contact"].map((item) => (
+                <ul
+                  className="hidden lg:flex gap-6 xl:gap-8 text-sm font-medium"
+                  role="menubar"
+                >
+                  {navItems.map((item) => (
                     <li key={item} role="none">
                       <button
                         role="menuitem"
                         tabIndex={0}
                         onClick={(e) => handleNavClick(e, item)}
-                        className="text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                        className={cn(
+                          "text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer",
+                          pathname === "/templates" &&
+                            item === "templates" &&
+                            "text-emerald-300 font-bold"
+                        )}
                       >
                         {item.charAt(0).toUpperCase() + item.slice(1)}
                       </button>
@@ -434,14 +505,11 @@ export const HeroHeader = () => {
 
                     {/* Mobile Navigation Links */}
                     <div className="space-y-3">
-                      {["features", "solutions", "testimonials", "contact"].map((item) => (
+                      {navItems.map((item) => (
                         <button
                           key={item}
                           role="menuitem"
-                          onClick={(e) => {
-                            handleNavClick(e, item);
-                            setMenuState(false);
-                          }}
+                          onClick={(e) => handleNavClick(e, item)}
                           className="block w-full text-left text-emerald-400 hover:text-emerald-300 transition-colors py-2"
                         >
                           {item.charAt(0).toUpperCase() + item.slice(1)}

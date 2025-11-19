@@ -3,13 +3,14 @@
 import { useRef } from "react";
 import { Star, Quote, Code2, Shield, TrendingUp, Linkedin } from "lucide-react";
 import { IconBrandLinkedin } from "@tabler/icons-react";
+import Image from "next/image";
 
 const testimonials = [
   {
     name: "Harshit Malik",
     role: "Generative AI Engineer",
     company: "StatusNeo",
-    image: "/harshit-malik.jpeg",
+    image: "/harshit-malik.webp",
     linkedin: "https://www.linkedin.com/in/harshitmalik22/",
     content:
       "It has made the Backend game more easy and efficient for me",
@@ -19,7 +20,7 @@ const testimonials = [
     name: "Sparsh Sharma",
     role: "Founder",
     company: "Backternity",
-    image: "/sparsh-sharma.png",
+    image: "/sparsh-sharma.webp",
     linkedin: "https://linkedin.com/in/sparshdev",
     content:
       "Couldn't believe myself that I am using backternity for backend",
@@ -87,9 +88,11 @@ export default function Testimonials() {
               <div className="flex items-center justify-between gap-3 relative z-10">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   {t.image && (
-                    <img
+                    <Image
                       src={t.image}
                       alt={t.name}
+                      width={56}
+                      height={56}
                       className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-emerald-500/20 flex-shrink-0"
                     />
                   )}

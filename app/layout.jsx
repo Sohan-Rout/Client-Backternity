@@ -136,7 +136,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer/>
-        <GoogleAnalytics gaId="G-1YLP9NEWXL" />
+        {/* <GoogleAnalytics gaId="G-1YLP9NEWXL" /> */}
       </body>
     </html>
   );
