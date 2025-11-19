@@ -166,7 +166,6 @@ export default function HeroSection() {
       className="relative min-h-screen bg-neutral-950 text-neutral-100 overflow-hidden"
     >
       <MeshGradientBackground aria-hidden="true" />
-      <HeroHeader />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-18 flex items-center min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 sm:py-10 md:py-10 w-full items-center">
@@ -192,10 +191,10 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-4 py-2"
             >
               <a
-                href="/browse/socket-io"
+                href="/templates"
                 className="text-sm font-switzer-light flex items-center gap-1 hover:gap-2 duration-100 transition-all text-neutral-300 hover:text-white"
               >
-                Socket-IO
+                View our Templates
                 <span>
                   <MoveRight size={16} aria-hidden="true" />
                 </span>
@@ -263,12 +262,19 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap">
+              <div className="flex flex-wrap gap-3">
                 <Link
                   href="/browse/auth-jwt"
                   className="px-6 py-3 rounded-full bg-emerald-500 text-neutral-950 font-switzer-semibold shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 transition-colors text-center"
                 >
                   Browse Components
+                </Link>
+
+                <Link
+                  href="/templates"
+                  className="px-6 py-3 rounded-full bg-neutral-900/30 backdrop-blur-sm text-neutral-100 font-switzer-semibold border border-neutral-800/50 hover:border-emerald-500/30 hover:bg-neutral-900/80 transition-all text-center"
+                >
+                  View Templates
                 </Link>
               </div>
               {/* Trust indicators */}

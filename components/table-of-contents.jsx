@@ -82,6 +82,63 @@ export default function TableOfContents() {
           </li>
         ))}
       </ul>
+
+      {/* Promotional Card */}
+      <div className="mt-6 p-4 bg-gradient-to-br from-emerald-950/40 to-emerald-900/20 border border-emerald-500/20 rounded-lg overflow-hidden">
+        {/* Mock Browser/Terminal Window */}
+        <div className="mb-4 bg-black/40 rounded-lg border border-white/5 overflow-hidden">
+          {/* Browser Chrome */}
+          <div className="flex items-center gap-1.5 px-3 py-2 bg-white/5 border-b border-white/5">
+            <div className="w-2 h-2 rounded-full bg-red-500/60"></div>
+            <div className="w-2 h-2 rounded-full bg-yellow-500/60"></div>
+            <div className="w-2 h-2 rounded-full bg-green-500/60"></div>
+          </div>
+          {/* Mock Content */}
+          <div className="p-3 space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-emerald-500/20 flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div className="h-1.5 bg-white/10 rounded w-20"></div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-emerald-500/20 flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div className="h-1.5 bg-white/10 rounded w-16"></div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-emerald-500/20 flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div className="h-1.5 bg-white/10 rounded w-24"></div>
+            </div>
+          </div>
+        </div>
+
+        <h4 className="text-sm font-semibold text-white mb-2">
+          Explore Complete Backend Templates
+        </h4>
+        <p className="text-xs text-neutral-400 mb-3 leading-relaxed">
+          Production-ready modules with authentication, payments, file uploads & more.
+        </p>
+        <a
+          href="/templates"
+          className="inline-flex items-center text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors group"
+        >
+          Browse Templates
+          <svg className="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
     </nav>
   );
 }

@@ -153,13 +153,47 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-emerald-400 transition-colors">
+                <Link href="/contact" className="hover:text-emerald-400 transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
                 <Link href="/browse" className="hover:text-emerald-400 transition-colors">
                   Browse All
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        {/* Legal Section */}
+        <div className="mt-12 pt-8 border-t border-neutral-800/50">
+          <nav aria-label="Legal navigation">
+            <h3 className="text-white font-switzer-semibold text-base mb-4">Legal</h3>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-switzer-light">
+              <li>
+                <Link href="/privacy" className="hover:text-emerald-400 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-emerald-400 transition-colors">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/cancellation-refunds" className="hover:text-emerald-400 transition-colors">
+                  Cancellation & Refunds
+                </Link>
+              </li>
+              <li>
+                <Link href="/shipping" className="hover:text-emerald-400 transition-colors">
+                  Shipping & Delivery
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-emerald-400 transition-colors">
+                  Contact Us
                 </Link>
               </li>
             </ul>
