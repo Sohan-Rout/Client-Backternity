@@ -1,8 +1,12 @@
+'use client';
+
 import Link from 'next/link';
-import { ArrowRight, Check, Terminal, CreditCard, Shield } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, Check, Terminal, CreditCard, Shield, Download } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import TemplateDownloadModal from '@/components/ui/template-download-modal';
 
 const iconMap = {
   'SiOpenai': Terminal,
@@ -11,8 +15,11 @@ const iconMap = {
 };
 
 export default function TemplateListItem({ template }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-b border-white/5 last:border-0">
+    <>
+      <div className="group relative grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-b border-white/5 last:border-0">
       {/* Left Column: Info */}
       <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
         <div>
@@ -37,11 +44,13 @@ export default function TemplateListItem({ template }) {
         </div>
 
         <div className="pt-4">
-          <Button asChild variant="outline" className="group/btn border-white/10 hover:bg-white/5 hover:text-emerald-400">
-            <Link href={`/templates/${template.slug}`}>
-              Download
-              <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-            </Link>
+          <Button 
+            onClick={() => setIsModalOpen(true)}
+            variant="outline" 
+            className="group/btn border-white/10 hover:bg-white/5 hover:text-emerald-400"
+          >
+            Download
+            <Download className="w-4 h-4 ml-2 group-hover/btn:translate-y-0.5 transition-transform" />
           </Button>
         </div>
       </div>
@@ -68,5 +77,13 @@ export default function TemplateListItem({ template }) {
         })}
       </div>
     </div>
+
+    {/* Download Modal */}
+    <TemplateDownloadModal 
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      template={template}
+    />
+    </>
   );
 }

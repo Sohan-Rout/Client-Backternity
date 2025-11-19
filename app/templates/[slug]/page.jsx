@@ -1,9 +1,5 @@
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import { templates } from '@/lib/templates-data';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, Download } from 'lucide-react';
-import ComponentViewer from '@/components/component-viewer';
+import TemplateDetailClient from './template-detail-client';
 
 export async function generateStaticParams() {
   return templates.map((template) => ({
@@ -16,94 +12,84 @@ export async function generateMetadata({ params }) {
   const template = templates.find((t) => t.slug === slug);
   
   if (!template) {
-    return { title: 'Template Not Found' };
+    return {
+      title: 'Template Not Found | Backternity',
+      description: 'The requested template could not be found.',
+    };
   }
 
+  const techStackNames = template.techStack?.map(t => t.name).join(', ') || '';
+  const tagsString = template.tags?.join(', ') || '';
+
   return {
-    title: `${template.title} | Backternity Templates`,
-    description: template.description,
+    title: `${template.title} - ${template.category} Template | Backternity`,
+    description: `${template.description} Download this production-ready ${template.category.toLowerCase()} template with ${techStackNames}. Backend template for Express.js developers.`,
+    keywords: [
+      template.title.toLowerCase(),
+      template.category.toLowerCase(),
+      ...template.tags || [],
+      'backend template',
+      'express.js template',
+      'production ready',
+      'free backend template',
+      'nodejs template',
+      'backend boilerplate',
+      techStackNames.toLowerCase()
+    ],
+    authors: [{ name: 'Sparsh Sharma', url: 'https://linkedin.com/in/sparshdev' }],
+    creator: 'Sparsh Sharma',
+    publisher: 'Backternity',
+    alternates: {
+      canonical: `https://backternity.dev/templates/${slug}`
+    },
+    openGraph: {
+      title: `${template.title} - ${template.category} Template`,
+      description: template.description,
+      url: `https://backternity.dev/templates/${slug}`,
+      siteName: 'Backternity',
+      images: [
+        {
+          url: `https://backternity.dev/og-template-${slug}.png`,
+          width: 1200,
+          height: 630,
+          alt: `${template.title} - Backend Template`,
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+      publishedTime: '2025-11-20T00:00:00.000Z',
+      modifiedTime: new Date().toISOString(),
+      authors: ['Sparsh Sharma'],
+      tags: template.tags || [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${template.title} - ${template.category} Template`,
+      description: template.description,
+      images: [`https://backternity.dev/og-template-${slug}.png`],
+      creator: '@backternity',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    category: template.category,
+    classification: 'Backend Development Template',
+    other: {
+      'article:tag': tagsString,
+      'product:price:amount': template.price === 'Free' ? '0' : template.price,
+      'product:price:currency': 'USD',
+    },
   };
 }
 
 export default async function TemplateDetailPage({ params }) {
-  const { slug } = await params;
-  const template = templates.find((t) => t.slug === slug);
-
-  if (!template) {
-    notFound();
-  }
-
-  // Adapt template data to ComponentViewer format
-  const componentData = {
-    ...template,
-    name: template.title,
-    type: template.category,
-  };
-
-  return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
-      <div className="container mx-auto px-4">
-        {/* Back Link */}
-        <Link href="/templates" className="inline-flex items-center text-muted-foreground hover:text-primary mb-8 transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Templates
-        </Link>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Main Content - Component Viewer */}
-          <div className="lg:col-span-8 xl:col-span-9">
-            <ComponentViewer component={componentData} />
-          </div>
-
-          {/* Sidebar - Actions & Quick Info */}
-          <div className="lg:col-span-4 xl:col-span-3 space-y-6">
-            <div className="sticky top-24">
-              <div className="p-6 rounded-xl border border-white/10 bg-card/30 backdrop-blur-sm space-y-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Get this Template</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Deploy this production-ready backend in minutes.
-                  </p>
-                  <Button size="lg" className="w-full text-base font-semibold shadow-lg shadow-primary/20">
-                    <Download className="w-5 h-5 mr-2" />
-                    Download Template
-                  </Button>
-                </div>
-
-                <div className="space-y-4 pt-4 border-t border-white/10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground text-sm">Price</span>
-                    <span className="font-semibold text-emerald-400">{template.price}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground text-sm">Version</span>
-                    <span className="font-mono text-sm">{template.version}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground text-sm">Category</span>
-                    <span className="text-sm">{template.category}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground text-sm">Last Updated</span>
-                    <span className="text-sm">Nov 2025</span>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-white/10">
-                  <h4 className="font-medium mb-3 text-sm">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {template.techStack?.map((tech) => (
-                      <div key={tech.name} className="text-xs px-2 py-1 rounded bg-secondary/50 text-muted-foreground border border-white/5">
-                        {tech.name}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <TemplateDetailClient params={await params} />;
 }

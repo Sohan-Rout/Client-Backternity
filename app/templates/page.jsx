@@ -5,13 +5,121 @@ import EmeraldGlowDivider from '@/components/ui/EmeraldGlowDivider';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Templates | Backternity',
-  description: 'Production-ready backend templates for your next project.',
+  title: 'Backend Templates - Production-Ready Express.js Backend Solutions | Backternity',
+  description: 'Download complete, production-ready backend templates with authentication, payments, AI integration, and more. Built with Express.js, MongoDB, Redis, Stripe, Razorpay, AWS S3 and more. Enterprise-grade backend solutions for developers.',
+  keywords: [
+    'backend templates',
+    'express.js templates',
+    'nodejs backend starter',
+    'production ready backend',
+    'authentication backend',
+    'payment integration backend',
+    'ai backend template',
+    'mongodb backend template',
+    'enterprise backend boilerplate',
+    'typescript backend starter',
+    'jwt authentication template',
+    'stripe payment backend',
+    'razorpay backend integration',
+    'microservices template',
+    'rest api template',
+    'backend architecture',
+    'scalable backend template',
+    'redis backend template',
+    'aws s3 backend integration',
+    'mfa authentication backend'
+  ],
+  authors: [{ name: 'Sparsh Sharma', url: 'https://linkedin.com/in/sparshdev' }],
+  creator: 'Sparsh Sharma',
+  publisher: 'Backternity',
+  alternates: {
+    canonical: 'https://backternity.dev/templates'
+  },
+  openGraph: {
+    title: 'Backend Templates - Production-Ready Express.js Solutions',
+    description: 'Download complete backend templates with authentication, payments, AI integration. Built with Express.js, MongoDB, Stripe, and more. Free for developers.',
+    url: 'https://backternity.dev/templates',
+    siteName: 'Backternity',
+    images: [
+      {
+        url: 'https://backternity.dev/og-templates.png',
+        width: 1200,
+        height: 630,
+        alt: 'Backternity Backend Templates - Production-Ready Solutions',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Backend Templates - Production-Ready Express.js Solutions',
+    description: 'Download complete backend templates with authentication, payments, AI integration. Free enterprise-grade backend solutions.',
+    images: ['https://backternity.dev/og-templates.png'],
+    creator: '@backternity',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  category: 'Technology',
+  classification: 'Backend Development Tools',
 };
 
 export default function TemplatesPage() {
+  // Structured Data for SEO
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Backend Templates - Production-Ready Express.js Solutions',
+    description: 'Download complete, production-ready backend templates with authentication, payments, AI integration, and more.',
+    url: 'https://backternity.dev/templates',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Backternity',
+      url: 'https://backternity.dev',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://backternity.dev/logo.png',
+      },
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: templates.map((template, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: template.title,
+          description: template.description,
+          applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Node.js',
+          offers: {
+            '@type': 'Offer',
+            price: template.price === 'Free' ? '0' : template.price,
+            priceCurrency: 'USD',
+          },
+          url: `https://backternity.dev/templates/${template.slug}`,
+        },
+      })),
+    },
+  };
+
   return (
     <main className="min-h-screen bg-background">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       {/* Hero Section - tall, bold, minimal */}
       <div className="relative min-h-[95vh] flex items-center bg-gradient-to-b from-black via-black to-emerald-950/20 overflow-hidden">
         {/* Grid Background - More visible */}
@@ -24,12 +132,12 @@ export default function TemplatesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Large heading and content */}
             <div className="space-y-6">
-              <p className="text-xs font-mono text-emerald-400 tracking-widest uppercase">
+              <p className="text-xs font-switzer-semibold text-emerald-400 tracking-widest uppercase">
                 Templates by the makers of Backternity
               </p>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1]">
-                Modern backend modules,
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-switzer-bold text-white leading-[1.1]">
+                Modern backend templates,
                 <br />
                 <span className="text-white">crafted with </span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
@@ -43,7 +151,7 @@ export default function TemplatesPage() {
                     <Server className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-semibold text-sm">Express</span>
+                    <span className="text-white font-switzer-semibold text-sm">Express</span>
                     <span className="text-xs text-muted-foreground">Backend</span>
                   </div>
                 </div>
@@ -53,7 +161,7 @@ export default function TemplatesPage() {
                     <Database className="w-5 h-5 text-blue-400" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-semibold text-sm">MongoDB</span>
+                    <span className="text-white font-switzer-semibold text-sm">MongoDB</span>
                     <span className="text-xs text-muted-foreground">Database</span>
                   </div>
                 </div>
@@ -65,7 +173,7 @@ export default function TemplatesPage() {
                     </svg>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-semibold text-sm">Razorpay</span>
+                    <span className="text-white font-switzer-semibold text-sm">Razorpay</span>
                     <span className="text-xs text-muted-foreground">Payments</span>
                   </div>
                 </div>
@@ -77,14 +185,14 @@ export default function TemplatesPage() {
                     </svg>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-semibold text-sm">AWS S3</span>
+                    <span className="text-white font-switzer-semibold text-sm">AWS S3</span>
                     <span className="text-xs text-muted-foreground">Storage</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-                Visually-stunning, easy to customize backend modules built with Express and Node.js. The perfect starting point for your next project and the ultimate resource for scaling fast.
+              <p className="text-lg text-muted-foreground max-w-xl font-switzer-medium leading-relaxed">
+                Internally-stunning, easy to customize backend modules built with Express and Node.js. The perfect starting point for your next project and the ultimate resource for scaling fast.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -150,10 +258,10 @@ export default function TemplatesPage() {
 
       {/* Listings Section */}
       <div id="templates-list" className="container mx-auto px-4 py-16 ">
-        <div className="flex flex-col md:flex-row gap-12 border-t border-white/10">
+        <div className="flex flex-col md:flex-row gap-12 border-t border-white/50">
           {/* Sidebar Label */}
-          <div className="hidden md:block w-12 pt-8 border-x border-white/10">
-            <div className="sticky top-32 text-xs font-mono text-muted-foreground uppercase tracking-widest [writing-mode:vertical-lr] rotate-180 ml-4">
+          <div className="hidden md:block w-12 pt-8 border-x border-white/50">
+            <div className="sticky top-32 text-xs font-switzer-bold text-muted-foreground uppercase tracking-widest [writing-mode:vertical-lr] rotate-180 ml-4">
               Latest Templates
             </div>
           </div>

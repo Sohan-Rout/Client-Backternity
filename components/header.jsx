@@ -429,7 +429,7 @@ export const HeroHeader = () => {
             scrolled ? "bg-black/20 backdrop-blur-2xl" : "backdrop-blur-2xl"
           )}
         >
-          <div className="mx-auto max-w-[105rem] min-w-0 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[110rem] min-w-0 px-4 sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between py-3 lg:py-4">
               {/* Logo */}
               <div className="flex items-center gap-4 sm:gap-8">
