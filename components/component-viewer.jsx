@@ -148,7 +148,7 @@ export default function ComponentViewer({ component }) {
       {component.documentation?.commandDetails && (
         <section id="command-details" aria-labelledby="command-details-title" tabIndex={-1}>
           <h2 id="command-details-title" className="text-2xl font-semibold mb-4 tracking-tight">
-            What This Command Does
+            What This Does
           </h2>
           <p className="text-[15px] leading-relaxed text-foreground/90 mb-6">
             {component.documentation.commandDetails.purpose}
