@@ -8,17 +8,17 @@ import Link from "next/link";
 // FeatureCard with semantic tags and aria-labels
 const FeatureCard = ({ title, description, icon: Icon, delay }) => (
   <article // article for standalone content block
-    className="group relative overflow-hidden rounded-2xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-4 sm:p-6 hover:border-emerald-500/30 transition-all duration-300"
+    className="group relative overflow-hidden rounded-xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-3 sm:p-4 hover:border-emerald-500/30 transition-all duration-300"
     aria-label={`${title} feature`}
   >
     <div className="relative z-10">
-      <div className="text-emerald-400 mb-3 sm:mb-4" aria-hidden="true">
-        <Icon size={26} className="sm:w-8 sm:h-8" />
+      <div className="text-emerald-400 mb-2 sm:mb-3" aria-hidden="true">
+        <Icon size={20} className="sm:w-6 sm:h-6" />
       </div>
-      <h3 className="text-[15px] sm:text-lg font-switzer-semibold text-neutral-100 mb-1 sm:mb-2 leading-snug">
+      <h3 className="text-sm sm:text-base font-switzer-semibold text-neutral-100 mb-1 leading-snug">
         {title}
       </h3>
-      <p className="text-[13px] sm:text-[15px] text-neutral-400 leading-relaxed font-switzer-light">
+      <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-switzer-light">
         {description}
       </p>
     </div>
@@ -51,9 +51,9 @@ const CodeShowcase = () => {
     <div
       role="region"
       aria-label="Command line interface code examples"
-      className="rounded-2xl bg-neutral-900/60 backdrop-blur-md border border-neutral-800/50 p-4 sm:p-6 overflow-hidden"
+      className="rounded-xl bg-neutral-900/60 backdrop-blur-md border border-neutral-800/50 p-3 sm:p-4 overflow-hidden"
     >
-      <div className="flex flex-wrap gap-2 mb-3 sm:mb-4" role="tablist">
+      <div className="flex flex-wrap gap-1.5 mb-2 sm:mb-3" role="tablist">
         {examples.map((ex, i) => (
           <button
             key={i}
@@ -62,7 +62,7 @@ const CodeShowcase = () => {
             aria-controls={`tabpanel-${i}`}
             id={`tab-${i}`}
             onClick={() => setActiveTab(i)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-switzer-medium transition-all duration-200 ${
+            className={`px-2.5 py-1 rounded-lg text-xs font-switzer-medium transition-all duration-200 ${
               activeTab === i
                 ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                 : "text-neutral-500 hover:text-neutral-300"
@@ -77,7 +77,7 @@ const CodeShowcase = () => {
         role="tabpanel"
         aria-labelledby={`tab-${activeTab}`}
         tabIndex={0}
-        className="relative font-mono text-xs sm:text-sm text-emerald-400 bg-neutral-950/50 rounded-lg p-3 sm:p-4 break-all cursor-pointer hover:bg-neutral-950/70 transition-colors group"
+        className="relative font-mono text-xs sm:text-sm text-emerald-400 bg-neutral-950/50 rounded-lg p-2.5 sm:p-3 break-all cursor-pointer hover:bg-neutral-950/70 transition-colors group"
         onClick={() => copyToClipboard(examples[activeTab].code)}
       >
         <div className="flex items-center justify-between">
@@ -167,10 +167,10 @@ export default function HeroSection() {
     >
       <MeshGradientBackground aria-hidden="true" />
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 lg:py-18 flex items-center min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 sm:py-10 md:py-10 w-full items-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-20 flex items-center min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 sm:py-8 md:py-8 w-full items-center">
           {/* LEFT: Main Content */}
-          <div className="space-y-6 lg:space-y-6 py-8">
+          <div className="space-y-4 lg:space-y-3 py-6">
             {/* Badge - Use meaningful labels */}
             <div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-sm"
@@ -203,16 +203,16 @@ export default function HeroSection() {
 
             {/* Main Headline */}
             <div
-              className="space-y-6"
+              className="space-y-3"
             >
-              <h1 className="text-5xl lg:text-7xl font-switzer-bold tracking-tight leading-tight">
+              <h1 className="text-4xl lg:text-5xl font-switzer-bold tracking-tight leading-tight">
                 <span className="text-neutral-100">Modular Backend.</span>
                 <br />
                 <span className="bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
                   Minimal Effort.
                 </span>
               </h1>
-              <p className="text-lg lg:text-xl text-neutral-400 max-w-xl leading-relaxed font-switzer-light">
+              <p className="text-base lg:text-lg text-neutral-400 max-w-xl leading-relaxed font-switzer-light">
                 Build scalable backends with one command. Authentication, data,
                 and messaging that integrate in minutes.
               </p>
@@ -220,11 +220,11 @@ export default function HeroSection() {
 
             {/* Call To Action */}
             <div
-              className="space-y-4"
+              className="space-y-3"
             >
               {/* Command strip - interactive with copy */}
               <div
-                className="relative w-full sm:w-[55vw] sm:-ml-6 lg:-mx-[60vw] mb-8 sm:mb-12 lg:left-[80%] lg:right-[50%]"
+                className="relative w-full sm:w-[55vw] sm:-ml-6 lg:-mx-[60vw] mb-6 sm:mb-8 lg:left-[80%] lg:right-[50%]"
                 onClick={() => copyToClipboard("npx backternity@latest init")}
                 role="button"
                 tabIndex={0}
@@ -236,8 +236,8 @@ export default function HeroSection() {
               >
                 <div className="relative backdrop-blur-[1px] border-[1px] overflow-hidden rounded-full border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.15)] group cursor-pointer hover:border-emerald-500/40 hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] transition-all duration-500">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/10 to-emerald-400/30 animate-pulse"></div>
-                  <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-start sm:justify-center">
-                    <div className="flex items-center gap-2 sm:gap-3 relative z-10 sm:ml-[380px]">
+                  <div className="container mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex justify-start sm:justify-center">
+                    <div className="flex items-center gap-2 sm:gap-3 relative z-10 sm:ml-[280px]">
                       <span
                         className="text-neutral-500 text-xs sm:text-sm"
                         aria-hidden="true"
@@ -262,30 +262,30 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5">
                 <Link
                   href="/browse/auth-jwt"
-                  className="px-6 py-3 rounded-full bg-emerald-500 text-neutral-950 font-switzer-semibold shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 transition-colors text-center"
+                  className="px-5 py-2.5 rounded-full bg-emerald-500 text-neutral-950 font-switzer-semibold shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 transition-colors text-center text-sm"
                 >
                   Browse Components
                 </Link>
 
                 <Link
                   href="/templates"
-                  className="px-6 py-3 rounded-full bg-neutral-900/30 backdrop-blur-sm text-neutral-100 font-switzer-semibold border border-neutral-800/50 hover:border-emerald-500/30 hover:bg-neutral-900/80 transition-all text-center"
+                  className="px-5 py-2.5 rounded-full bg-neutral-900/30 backdrop-blur-sm text-neutral-100 font-switzer-semibold border border-neutral-800/50 hover:border-emerald-500/30 hover:bg-neutral-900/80 transition-all text-center text-sm"
                 >
                   View Templates
                 </Link>
               </div>
               {/* Trust indicators */}
               <div
-                className="flex flex-wrap gap-6 text-sm text-neutral-500 font-switzer-light pt-6"
+                className="flex flex-wrap gap-4 text-xs text-neutral-500 font-switzer-light pt-4"
               >
                 {["Development Ready", "Extendable", "Developer Friendly"].map(
                   (item) => (
-                    <div key={item} className="flex items-center gap-2">
+                    <div key={item} className="flex items-center gap-1.5">
                       <svg
-                        className="w-5 h-5 text-emerald-500"
+                        className="w-4 h-4 text-emerald-500"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         aria-hidden="true"
@@ -307,7 +307,7 @@ export default function HeroSection() {
           {/* RIGHT Side: Feature Cards and Code Example */}
           <section
             aria-label="Core features overview"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-10 lg:mt-0"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-6 lg:mt-0"
           >
             <div className="col-span-1 sm:col-span-2"></div>
             <FeatureCard
@@ -325,14 +325,14 @@ export default function HeroSection() {
 
             {/* Notification subscription card */}
             <div
-              className="col-span-1 sm:col-span-2 group relative overflow-hidden rounded-2xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-4 sm:p-6 hover:border-emerald-500/30 transition-all duration-300"
+              className="col-span-1 sm:col-span-2 group relative overflow-hidden rounded-xl bg-neutral-900/40 backdrop-blur-sm border border-neutral-800/50 p-3 sm:p-4 hover:border-emerald-500/30 transition-all duration-300"
             >
-              <div className="relative z-10 space-y-4">
-                <div className="space-y-2">
-                  <h3 className="text-[15px] sm:text-lg font-switzer-semibold text-neutral-100 leading-snug">
+              <div className="relative z-10 space-y-3">
+                <div className="space-y-1.5">
+                  <h3 className="text-sm sm:text-base font-switzer-semibold text-neutral-100 leading-snug">
                     Stay Updated
                   </h3>
-                  <p className="text-[13px] sm:text-[15px] text-neutral-400 leading-relaxed font-switzer-light">
+                  <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-switzer-light">
                     Get notified when new components are released
                   </p>
                 </div>
@@ -348,13 +348,13 @@ export default function HeroSection() {
                     placeholder="Enter your email"
                     required
                     disabled={isSubmitting}
-                    className="flex-1 min-w-[180px] px-4 py-2.5 rounded-full bg-neutral-950/50 border border-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 font-switzer-light text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 min-w-[180px] px-3 py-2 rounded-full bg-neutral-950/50 border border-neutral-800/50 text-neutral-100 placeholder:text-neutral-500 font-switzer-light text-xs focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Email address for component notifications"
                   />
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-5 py-2.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-switzer-semibold hover:bg-emerald-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap text-sm"
+                    className="px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-switzer-semibold hover:bg-emerald-500/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap text-xs"
                   >
                     {isSubmitting ? "..." : "Notify Me"}
                   </button>
@@ -363,7 +363,7 @@ export default function HeroSection() {
                 {/* Status message */}
                 {submitStatus && (
                   <div
-                    className={`text-xs sm:text-sm font-switzer-light px-3 py-2 rounded-lg inline-block ${
+                    className={`text-xs font-switzer-light px-2.5 py-1.5 rounded-lg inline-block ${
                       submitStatus.type === "success"
                         ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"
                         : "bg-red-500/10 text-red-400 border border-red-500/30"
@@ -386,11 +386,11 @@ export default function HeroSection() {
 
       {/* Scroll Indicator */}
       <div
-        className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 text-neutral-600"
+        className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 text-neutral-600"
         aria-hidden="true"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6"
+          className="w-4 h-4 sm:w-5 sm:h-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
