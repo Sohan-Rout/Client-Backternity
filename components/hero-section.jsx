@@ -168,7 +168,7 @@ export default function HeroSection() {
       <MeshGradientBackground aria-hidden="true" />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-20 flex items-center min-h-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 sm:py-8 md:py-8 w-full items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 sm:py-8 md:py-8 w-full items-center lg:px-20">
           {/* LEFT: Main Content */}
           <div className="space-y-4 lg:space-y-3 py-6">
             {/* Badge - Use meaningful labels */}
@@ -303,7 +303,6 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-
           {/* RIGHT Side: Feature Cards and Code Example */}
           <section
             aria-label="Core features overview"
