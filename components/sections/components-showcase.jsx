@@ -73,7 +73,7 @@ export default function ComponentsShowcase() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {componentCategories.map((item, index) => (
             <CardSpotlight
               key={index}
@@ -104,7 +104,7 @@ export default function ComponentsShowcase() {
         <div className="text-center">
           <Link
             href="/browse"
-            className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-neutral-950 font-switzer-medium shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:from-emerald-400 hover:to-teal-300 transition-all text-sm sm:text-base"
+            className="inline-flex items-center gap-2 mt-10 px-6 sm:px-7 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-neutral-950 font-switzer-medium shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:from-emerald-400 hover:to-teal-300 transition-all text-sm sm:text-base"
           >
             Browse All Components
             <ArrowRight className="w-4 h-4" />
