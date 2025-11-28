@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <main className="h-[100vh] flex items-center justify-center">
       <BackgroundBeams className="pointer-events-none" />
-      <div className="flex flex-col justify-center items-center gap-6">
+      <div className="flex flex-col justify-center items-center gap-8">
         <section>
           <HoverBorderGradient className="flex gap-2 justify-center items-center">
             <div className="bg-red-500 w-2 h-2 rounded-full animate-pulse"/>

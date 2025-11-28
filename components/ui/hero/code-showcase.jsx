@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { Copy } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Copy, Check } from "lucide-react";
 import { ShineBorder } from "../shine-border";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CodeShowcase(){
   const [activeTab, setActiveTab] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const overlayRef = useRef(null);
+  const cardRef = useRef(null);
   const examples = [
     { label: "Init", code: "npx backternity@latest init" },
     { label: "Auth", code: "npx backternity@latest add auth-jwt" },
@@ -15,20 +19,45 @@ export default function CodeShowcase(){
   const copyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
+      setShowOverlay(true);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => {
+        setShowOverlay(false);
+        setCopied(false);
+      }, 900);
     } catch (err) {
       console.error("Failed to copy:", err);
     }
   };
 
   return (
-    <div
+    <div ref={cardRef}
       role="region"
       aria-label="Command line interface code examples"
       className="shrink-0 w-120 min-w-120 max-w-120 rounded-xl bg-neutral-900/60 backdrop-blur-md border border-neutral-800/50 p-3 sm:p-4 overflow-hidden"
     >
       <ShineBorder />
+      <AnimatePresence>
+        {showOverlay && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="absolute inset-0 flex items-center justify-center rounded-xl z-50 bg-neutral-900/80 pointer-events-none"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="w-16 h-16 rounded-full bg-emerald-500/30 border border-emerald-400 flex items-center justify-center"
+            >
+              <Check size={32} className="text-emerald-300" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="flex flex-wrap gap-1.5 mb-2 sm:mb-3" role="tablist">
         {examples.map((ex, i) => (
           <button
@@ -69,15 +98,6 @@ export default function CodeShowcase(){
             {copied ? <Check size={14} /> : <Copy size={14} />}
           </button>
         </div>
-
-        {copied && (
-          <div
-            role="alert"
-            className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs text-emerald-400 font-medium bg-emerald-500/10 border border-emerald-500/20 rounded-md px-2 py-1 animate-fade"
-          >
-            Copied!
-          </div>
-        )}
       </div>
     </div>
   );
