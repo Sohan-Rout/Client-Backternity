@@ -6,16 +6,16 @@ export default function ColourfulText({
   text
 }) {
   const colors = [
-    "rgb(131, 179, 32)",
-    "rgb(47, 195, 106)",
-    "rgb(42, 169, 210)",
-    "rgb(4, 112, 202)",
-    "rgb(107, 10, 255)",
-    "rgb(183, 0, 218)",
-    "rgb(218, 0, 171)",
-    "rgb(230, 64, 92)",
-    "rgb(232, 98, 63)",
-    "rgb(249, 129, 47)",
+    "rgb(220, 220, 220)", // light silver
+    "rgb(200, 200, 200)", // silver
+    "rgb(180, 180, 180)", // medium gray
+    "rgb(160, 160, 160)", // metallic gray
+    "rgb(230, 230, 230)", // white-silver shine
+    "rgb(210, 210, 210)", // chrome-like
+    "rgb(190, 190, 190)", // brushed metal
+    "rgb(170, 170, 170)", // deeper metallic tone
+    "rgb(240, 240, 240)", // bright highlight
+    "rgb(150, 150, 150)", // dark steel
   ];
 
   const [currentColors, setCurrentColors] = React.useState(colors);
