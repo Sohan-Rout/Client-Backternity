@@ -1,5 +1,4 @@
 import ComponentRegistry from '@/lib/registry';
-import GalleryRegistry from '@/lib/gallery-registry';
 import { templates } from '@/lib/templates-data';
 
 export default function sitemap() {
@@ -9,14 +8,6 @@ export default function sitemap() {
   // Generate URLs for all components in the registry
   const componentUrls = Object.keys(ComponentRegistry).map((slug) => ({
     url: `${baseUrl}/browse/${slug}`,
-    lastModified: nowIso,
-    changefreq: 'weekly',
-    priority: 0.8,
-  }));
-
-  // Generate URLs for all gallery projects
-  const galleryUrls = Object.keys(GalleryRegistry).map((slug) => ({
-    url: `${baseUrl}/gallery/${slug}`,
     lastModified: nowIso,
     changefreq: 'weekly',
     priority: 0.8,
@@ -49,12 +40,6 @@ export default function sitemap() {
       lastModified: nowIso,
       changefreq: 'daily',
       priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/gallery`,
-      lastModified: nowIso,
-      changefreq: 'daily',
-      priority: 0.9,
     },
     {
       url: `${baseUrl}/playground`,
@@ -95,5 +80,5 @@ export default function sitemap() {
   ];
 
   // Merge static and dynamic URLs
-  return [...staticRoutes, ...componentUrls, ...galleryUrls, ...templateUrls];
+  return [...staticRoutes, ...componentUrls, ...templateUrls];
 }
