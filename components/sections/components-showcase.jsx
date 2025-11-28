@@ -63,11 +63,8 @@ export default function ComponentsShowcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-switzer-semibold text-white mb-5 tracking-tight leading-tight">
-            Production-Ready{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
-              Components
-            </span>
+          <h2 className="text-3xl py-2 sm:text-4xl md:text-5xl lg:text-6xl font-switzer-semibold bg-gradient-to-r from-[#f5f5f5] via-[#d4d4d4] via-50% to-[#8c8c8c] bg-clip-text text-transparent">
+            Production-Ready Components
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-neutral-400 max-w-3xl mx-auto leading-relaxed font-switzer-light">
             Over 20 modular backend components designed for scalability,
