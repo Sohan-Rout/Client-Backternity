@@ -11,12 +11,12 @@ const cta = "Modular Backend. Minimal Effort.";
 
 export default function Hero() {
   return (
-    <main className="h-[100vh] flex items-center justify-center">
+    <main className="h-[100vh] flex items-center justify-center bg-neutral-950">
       <BackgroundBeams className="pointer-events-none" />
       <div className="flex flex-col justify-center items-center gap-8">
         <section>
           <HoverBorderGradient className="flex gap-2 justify-center items-center">
-            <div className="bg-red-500 w-2 h-2 rounded-full animate-pulse"/>
+            <div className="bg-blue-500 w-2 h-2 rounded-full animate-pulse"/>
             <a className="text-sm" href={"./templates"}>What's New : Check Our Templates</a>
           </HoverBorderGradient>
         </section>
@@ -34,11 +34,11 @@ export default function Hero() {
           <CodeShowcase />
         </section>
         <section className="flex flex-col md:flex-row gap-4">
-          <ShinyButton onClick={() => (window.location.href = "./browse/auth-jwt")} className="bg-emerald-500 w-60">
-            View Components
+          <ShinyButton onClick={() => (window.location.href = "./browse/auth-jwt")} className="bg-emerald-500/50 w-60 border border-emerald-500">
+            <span className="text-white">View Components</span>
           </ShinyButton>
-          <ShinyButton onClick={() => (window.location.href = "./templates")} className="bg-none border border-emerald-500 w-60">
-            <span className="text-emerald-500">View Templates</span>
+          <ShinyButton onClick={() => (window.location.href = "./templates")} className="bg-neutral-900 border w-60">
+            <span className="text-white">View Templates</span>
           </ShinyButton>
         </section>
       </div>

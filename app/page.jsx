@@ -1,4 +1,3 @@
-import HeroSection from "@/components/hero-section";
 import Hero from "@/components/hero";
 import Content from "@/components/content";
 import EmeraldGlowDivider from "@/components/ui/EmeraldGlowDivider";
@@ -54,19 +53,15 @@ export const metadata = {
 export default function Home() {
   return (
     <div>
-      <section className="font-grotesk">
+      <section>
         <Hero />
-      </section>
-
-      <section className="font-grotesk">
-        <HeroSection />
       </section>
 
       <section>
         <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
       </section>
 
-      <section id="features" className="font-grotesk">
+      <section id="features">
         <Content />
       </section>
 
@@ -74,7 +69,7 @@ export default function Home() {
         <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
       </section>
 
-      <section id="solutions" className="font-grotesk">
+      <section id="solutions">
         <ComponentsShowcase />
       </section>
 
@@ -82,7 +77,7 @@ export default function Home() {
         <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
       </section>
 
-      <section id="testimonials" className="font-grotesk">
+      <section id="testimonials">
         <Testimonials />
       </section>
 
@@ -90,7 +85,7 @@ export default function Home() {
         <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
       </section>
 
-      <section id="contact" className="font-grotesk  ">
+      <section id="contact">
         <ContactUs />
       </section>
     </div>
