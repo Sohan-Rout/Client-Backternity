@@ -97,10 +97,7 @@ export default function RootLayout({ children }) {
       <head>
         {/* Additional SEO Meta Tags */}
         <meta name="application-name" content="Backternity" />
-        <meta property="og:site_name" content="Backternity" />
-
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="e7250922-4481-41ca-a266-3d0d00c8c245"></script>
-        
+        <meta property="og:site_name" content="Backternity" />        
         {/* JSON-LD Structured Data for Rich Snippets */}
         <script
           type="application/ld+json"

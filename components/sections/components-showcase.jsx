@@ -1,5 +1,6 @@
 "use client";
-
+import { CardSpotlight } from "../ui/card-spotlight";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -58,23 +59,12 @@ const componentCategories = [
 
 export default function ComponentsShowcase() {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 md:py-32 bg-gradient-to-b from-[#001510] via-neutral-950 to-black text-neutral-100">
-      {/* Ambient glow layers */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-[-10%] left-[15%] w-[40vw] h-[40vw] bg-emerald-600/10 blur-[120px]" />
-        <div className="absolute bottom-[-20%] right-[10%] w-[35vw] h-[35vw] bg-emerald-500/10 blur-[140px]" />
-      </div>
-
+    <section className="relative overflow-hidden py-20 sm:py-28 md:py-32 bg-neutral-950 text-neutral-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div
-          className="text-center mb-16 sm:mb-20"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-switzer-semibold text-white mb-5 tracking-tight leading-tight">
-            Production-Ready{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
-              Components
-            </span>
+        <div className="text-center mb-16 sm:mb-20">
+          <h2 className="text-3xl py-2 sm:text-4xl md:text-5xl lg:text-6xl font-switzer-semibold bg-gradient-to-r from-[#f5f5f5] via-[#d4d4d4] via-50% to-[#8c8c8c] bg-clip-text text-transparent">
+            Production-Ready Components
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-neutral-400 max-w-3xl mx-auto leading-relaxed font-switzer-light">
             Over 20 modular backend components designed for scalability,
@@ -83,61 +73,38 @@ export default function ComponentsShowcase() {
           </p>
         </div>
 
-        {/* Component grid */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-20 sm:mb-24"
-        >
-          {componentCategories.map((category, i) => {
-            const Icon = category.icon;
-            return (
-              <div
-                key={i}
-                className="group relative p-5 sm:p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800/60 backdrop-blur-sm hover:border-emerald-500/25 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] transition-all duration-300"
-              >
-                {/* Emerald light sweep */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-                <div className="flex items-center mb-4 relative z-10">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mr-4 group-hover:bg-emerald-500/20 transition-colors">
-                    <Icon className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-medium text-white text-base sm:text-lg leading-tight">
-                      {category.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-neutral-500">
-                      {category.count}
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-neutral-400 mb-4 leading-relaxed">
-                  {category.description}
-                </p>
-
-                <ul className="space-y-2">
-                  {category.examples.map((ex, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center text-xs sm:text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3 opacity-70 group-hover:opacity-100" />
-                      {ex}
-                    </li>
-                  ))}
-                </ul>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+          {componentCategories.map((item, index) => (
+            <CardSpotlight
+              key={index}
+              className="flex flex-col justify-center items-center gap-4"
+            >
+              <HoverBorderGradient className="h-16 w-16 flex items-center justify-center bg-neutral-900 rounded-full">
+                <item.icon className="w-6 h-6 text-emerald-400" />
+              </HoverBorderGradient>
+              <div className="flex flex-col items-center">
+                <h3 className="text-lg font-switzer-medium text-white">
+                  {item.title}
+                </h3>
+                <p className="text-neutral-400 text-center text-sm">{item.description}</p>
               </div>
-            );
-          })}
+              <ul className="text-neutral-300 text-xs space-y-1 max-w-full w-full">
+                {item.examples.map((ex, i) => (
+                  <li key={i}>• {ex}</li>
+                ))}
+              </ul>
+              <p className="text-emerald-400 text-xs font-switzer-light pt-2">
+                {item.count}
+              </p>
+            </CardSpotlight>
+          ))}
         </div>
 
         {/* CTA */}
-        <div
-          className="text-center"
-        >
+        <div className="text-center">
           <Link
             href="/browse"
-            className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-neutral-950 font-switzer-medium shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:from-emerald-400 hover:to-teal-300 transition-all text-sm sm:text-base"
+            className="inline-flex items-center gap-2 mt-10 px-6 sm:px-7 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-neutral-950 font-switzer-medium shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] hover:from-emerald-400 hover:to-teal-300 transition-all text-sm sm:text-base"
           >
             Browse All Components
             <ArrowRight className="w-4 h-4" />
