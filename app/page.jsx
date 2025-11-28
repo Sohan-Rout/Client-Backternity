@@ -56,9 +56,9 @@ export default function Home() {
       <section>
         <Hero />
       </section>
-
-      <section>
-        <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
+      
+      <section id="solutions">
+        <ComponentsShowcase />
       </section>
 
       <section id="features">
@@ -67,10 +67,6 @@ export default function Home() {
 
       <section>
         <EmeraldGlowDivider height={2} pulseSpeed={3} glowIntensity={0.5} />
-      </section>
-
-      <section id="solutions">
-        <ComponentsShowcase />
       </section>
 
       <section>
