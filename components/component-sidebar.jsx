@@ -73,7 +73,14 @@ export default function ComponentSidebar({ components }) {
                             : "text-neutral-300 hover:text-white hover:bg-neutral-800/40"
                         }`}
                       >
-                        {comp.name}
+                        <div className="flex items-center justify-between">
+                          <span>{comp.name}</span>
+                          {comp.new && (
+                            <span className="text-[8px] px-1 py-0.4 bg-emerald-500 text-black font-semibold rounded">
+                              New
+                            </span>
+                          )}
+                        </div>
                       </Link>
                     );
                   })}
